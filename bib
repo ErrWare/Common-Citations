@@ -1,0 +1,382 @@
+
+%% Ergo? Alt-Ergo?
+%% https://alt-ergo.ocamlpro.com/
+@InProceedings{10.1007/978-3-642-04222-5_18,
+author="Lescuyer, St{\'e}phane
+and Conchon, Sylvain",
+editor="Ghilardi, Silvio
+and Sebastiani, Roberto",
+title="Improving Coq Propositional Reasoning Using a Lazy CNF Conversion Scheme",
+booktitle="Frontiers of Combining Systems",
+year="2009",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="287--303",
+abstract="In an attempt to improve automation capabilities in the Coq proof assistant, we develop a tactic for the propositional fragment based on the DPLL procedure. Although formulas naturally arising in interactive proofs do not require a state-of-the-art SAT solver, the conversion to clausal form required by DPLL strongly damages the performance of the procedure. In this paper, we present a reflexive DPLL algorithm formalized in Coq which outperforms the existing tactics. It is tightly coupled with a lazy CNF conversion scheme which, unlike Tseitin-style approaches, does not disrupt the procedure. This conversion relies on a lazy mechanism which requires slight adaptations of the original DPLL. As far as we know, this is the first formal proof of this mechanism and its Coq implementation raises interesting challenges.",
+isbn="978-3-642-04222-5"
+}
+
+%% PAbit
+@phdthesis{Schule2007,
+  author       = {Tobias Sch{\"{u}}le},
+  title        = {Verification of infinite state systems using Presburger arithmetic},
+  school       = {University of Kaiserslautern},
+  year         = {2007},
+  url          = {https://d-nb.info/985380225},
+  isbn         = {978-3-89963-562-1},
+  timestamp    = {Sat, 17 Jul 2021 09:07:36 +0200},
+  biburl       = {https://dblp.org/rec/phd/de/Schule2007.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+% 2.4.2: care has to be taken with automata representing formulas of Presburger arithmetic, since the alphabet of such automata can be very large. In fact, the size of the alphabet is exponential in the number of variables 
+% For these reasons, we use another approach that leverages BDDs
+
+% Tarski Decidability Results
+@article{Doner1988,
+author = {Doner, John and Hodges, Wilfrid},
+address = {New York, USA},
+copyright = {Copyright 1988 Association for Symbolic Logic, Inc.},
+issn = {0022-4812},
+journal = {The Journal of symbolic logic},
+keywords = {Algebra ; Axioms ; Decidability ; Decision making ; Decision theory ; First order theories ; Lindenbaum Tarski algebra ; Logical theorems ; Mathematical theorems ; Philosophical logics. Philosophy of language ; Philosophy ; Quantifier elimination ; Survey/Expository Papers},
+language = {eng},
+number = {1},
+pages = {20-35},
+publisher = {Cambridge University Press},
+title = {Alfred Tarski and decidable theories},
+volume = {53},
+year = {1988},
+}
+
+@article{McNulty1986,
+author = {McNulty, George F.},
+address = {New York, USA},
+copyright = {Copyright 1986 Association of Symbolic Logic, Inc.},
+issn = {0022-4812},
+journal = {The Journal of symbolic logic},
+keywords = {Algebra ; Atomic theory ; Decidability ; Interpretability ; Mathematical logic ; Mathematical set theory ; Mathematical sets ; Peano axioms ; Relation algebras ; Survey/Expository Papers ; Undecidability},
+language = {eng},
+number = {4},
+pages = {890-898},
+publisher = {Cambridge University Press},
+title = {Alfred Tarski and undecidable theories},
+volume = {51},
+year = {1986},
+}
+
+% Wanda's decision procedure for abelian groups
+@article{Szmielew1955,
+author = {Szmielew, Wanda},
+issn = {0016-2736},
+journal = {Fundamenta mathematicae},
+language = {eng},
+number = {2},
+pages = {203-271},
+title = {Elementary properties of Abelian groups},
+volume = {41},
+year = {1955},
+}
+
+% Church's undecidability of Peano Arith
+@article{ChurchAlonzo1936AUPo,
+author = {Church, Alonzo},
+issn = {0002-9327},
+journal = {American journal of mathematics},
+keywords = {Integers ; Logical theorems ; Mathematical functions ; Mathematical sets ; Mathematical theorems ; Mathematics ; Number theory ; Recursion ; Recursive functions ; Well formed formulas},
+language = {eng},
+number = {2},
+pages = {345-363},
+publisher = {Johns Hopkins Press},
+title = {An Unsolvable Problem of Elementary Number Theory},
+volume = {58},
+year = {1936},
+}
+
+
+% New and improved LIA DP
+% References 3 categories of 
+% Define algorithmic and descriptional complexity
+@inproceedings{Chistikov2022,
+author = {Chistikov, Dmitry and Haase, Christoph and Mansutti, Alessio and Baier, Christel},
+address = {New York, NY, USA},
+booktitle = {Proceedings of the 37th Annual ACM/IEEE Symposium on Logic in Computer Science},
+copyright = {2022 ACM},
+isbn = {1450393519},
+keywords = {Theory of computation ; Theory of computation -- Randomness geometry and discrete structures},
+language = {eng},
+pages = {1-13},
+publisher = {ACM},
+title = {Geometric decision procedures and the VC dimension of linear arithmetic theories},
+year = {2022},
+}
+
+% Bounds on Quant Elim for PA
+@inproceedings{Weispfenning1997,
+author = {Weispfenning, Volker},
+title = {Complexity and uniformity of elimination in Presburger arithmetic},
+year = {1997},
+isbn = {0897918754},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/258726.258746},
+doi = {10.1145/258726.258746},
+booktitle = {Proceedings of the 1997 International Symposium on Symbolic and Algebraic Computation},
+pages = {48–53},
+numpages = {6},
+location = {Kihei, Maui, Hawaii, USA},
+series = {ISSAC '97}
+}
+
+% we give an application to quantifier elimination in integer linear arithmetic where the variables in a block of quantifiers, if independent, could be eliminated with an exponential (instead of the standard doubly exponential) blow-up.
+@inproceedings{Hague2020,
+author = {Hague, Matthew and Lin, Anthony W. and R\"{u}mmer, Philipp and Wu, Zhilin},
+title = {Monadic Decomposition in Integer Linear Arithmetic},
+year = {2020},
+isbn = {978-3-030-51073-2},
+publisher = {Springer-Verlag},
+address = {Berlin, Heidelberg},
+url = {https://doi.org/10.1007/978-3-030-51074-9_8},
+doi = {10.1007/978-3-030-51074-9_8},
+booktitle = {Automated Reasoning: 10th International Joint Conference, IJCAR 2020, Paris, France, July 1–4, 2020, Proceedings, Part I},
+pages = {122–140},
+numpages = {19},
+location = {Paris, France}
+}
+
+% Section 2.2.2 describe undecidable extensions to PA
+@phdthesis{Lechner2016,
+author = {Lechner, Antonia},
+copyright = {Database copyright ProQuest LLC; ProQuest does not claim copyright in the individual underlying works.},
+isbn = {9798302886217},
+keywords = {Applied Mathematics ; Equality ; Language ; Linear algebra ; Multiplication & division ; Polynomials ; Temporal logic},
+language = {eng},
+publisher = {ProQuest Dissertations & Theses},
+title = {Extensions of Presburger Arithmetic and Model Checking One-Counter Automata},
+year = {2016},
+school = {University of Oxford},
+}
+
+% General Decidable Extensions of PA
+% (Extending with a relation R that satisfies certain properties)
+@article{Point2000,
+ ISSN = {00224812},
+ URL = {http://www.jstor.org/stable/2586704},
+ author = {Françoise Point},
+ journal = {The Journal of Symbolic Logic},
+ number = {3},
+ pages = {1347--1374},
+ publisher = {Association for Symbolic Logic},
+ title = {On Decidable Extensions of Presburger Arithmetic: From A. Bertrand Numeration Systems to Pisot Numbers},
+ urldate = {2025-02-25},
+ volume = {65},
+ year = {2000}
+}
+
+% Section 16.3.3 - Deciding Bit-Vector Arithmetic
+% page 525/980 in pdf
+% Also covers Tseitsin equisatisfiability transformation in CNF chapter
+@misc{Biere2009,
+author = {Biere, Armin.},
+address = {Amsterdam, The Netherlands ;},
+booktitle = {Handbook of satisfiability},
+language = {eng},
+publisher = {IOS Press},
+series = {Frontiers in artificial intelligence and applications, v. 185},
+title = {Handbook of satisfiability },
+year = {2009},
+}
+
+% Haven't read this yet
+@inproceedings{Barrett1998,
+author = {Barrett, Clark W. and Dill, David L. and Levitt, Jeremy R.},
+title = {A decision procedure for bit-vector arithmetic},
+year = {1998},
+isbn = {0897919645},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/277044.277186},
+doi = {10.1145/277044.277186},
+booktitle = {Proceedings of the 35th Annual Design Automation Conference},
+pages = {522–527},
+numpages = {6},
+keywords = {voltage scaling, synthesis, placement, low power, level converters, flip-flops, design automatian, codec, MPEG4},
+location = {San Francisco, California, USA},
+series = {DAC '98}
+}
+
+% SAT / k-SAT probably exponential in worst case
+@inproceedings{Impagliazzo1999,
+author = {Impagliazzo, R. and Paturi, R.},
+booktitle = {Proceedings. Fourteenth Annual IEEE Conference on Computational Complexity (Formerly: Structure in Complexity Theory Conference) (Cat.No.99CB36317)},
+isbn = {0769500757},
+issn = {1093-0159},
+keywords = {Algorithm design and analysis ; Educational programs ; NP-complete problem ; Polynomials ; Upper bound},
+language = {eng},
+pages = {237-240},
+publisher = {IEEE},
+title = {Complexity of k-SAT},
+year = {1999},
+}
+
+% "Instead, modern SAT solvers, meanwhile, are very efficient in dealing with practical problems, solving formulas with up to 10^7 variables."
+% QBF and DQBF are the prototypical problems of PSpace- and NExpTime-Complete families respectively.
+% Practical solvers for QBF exist, e.g., [...]
+% What problems does QBF capture?
+% What is EPR? What problems does it capture?
+% " To really understand a computational problem and the difficulties that might arise with it, it is essential to know its complexity."
+% Chapter 10 - SLS (Stochastic LS) - solving bitvec SAT sans bit-blasting and re-encoding
+@phdthesis{frohlich2016,
+  title={Theoretical and practical aspects of bit-vector reasoning/eingereicht von Dipl.-Inf. Andreas Fr{\"o}hlich},
+  author={Fr{\"o}hlich, Andreas},
+  year={2016},
+  url={https://epub.jku.at/obvulihs/content/titleinfo/1302446},
+  lastaccessed = "Februar 28, 2025",
+}
+
+@misc{VardiMosheY.2014Bsta,
+abstract = {The Boolean Satisfiability Problem (SAT, for short) asks whether a given Boolean formula, with Boolean gates such as AND and NOT, has some assignment of Os and 1s to its input variables such that the formula yields the value 1. SAT has been a problem of central importance in computer science since Stephen Cook proved its NP-completeness in 1971. To resolve the P vs. NP question, one of the most outstanding open questions in computer science and mathematics, one would have to show whether SAT is or is not in P, that is, whether it can be or cannot be solved in polynomial time. Most modern-day SAT-solving algorithms are based on the work of Martin Davis and Hilary Putnam in a 1958 technical report written for the National Security Agency.},
+author = {Vardi, Moshe Y.},
+address = {New York},
+copyright = {Copyright Association for Computing Machinery Mar 2014},
+issn = {0001-0782},
+journal = {Communications of the ACM},
+keywords = {Algorithms ; Boolean ; Computer science ; Operating systems},
+language = {eng},
+number = {3},
+pages = {5-5},
+publisher = {Association for Computing Machinery},
+title = {Boolean satisfiability: theory and engineering},
+volume = {57},
+year = {2014},
+}
+
+%% The following 3 were referenced from Frolich's dissertation (Ch 2) as discussing unfixed-length bitvectors
+@article{AyariAbdelwaheb2003Dpfi,
+author = {Ayari, Abdelwaheb and Basin, David and Klaedtke, Felix},
+address = {Amsterdam},
+copyright = {2002 Elsevier Science B.V.},
+issn = {0304-3975},
+journal = {Theoretical computer science},
+keywords = {Algorithmics. Computability. Computer arithmetics ; Alternating automaton ; Applied sciences ; Computer science; control theory; systems ; Exact sciences and technology ; Inductive Boolean function ; Logic and foundations ; Mathematical logic foundations set theory ; Mathematics ; Parameterized circuit ; Recursion theory ; Sciences and techniques of general use ; Theoretical computing ; Verification},
+language = {eng},
+number = {1},
+pages = {301-329},
+publisher = {Elsevier B.V},
+title = {Decision procedures for inductive Boolean functions based on alternating automata},
+volume = {300},
+year = {2003},
+}
+@InProceedings{bjorner1998,
+author="Bj{\O}rner, Nikolaj S.
+and Pichora, Mark C.",
+editor="Steffen, Bernhard",
+title="Deciding fixed and non-fixed size bit-vectors",
+booktitle="Tools and Algorithms for the Construction and Analysis of Systems",
+year="1998",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="376--392",
+abstract="We develop a new, efficient, and compact decision procedure for fixed size bit-vectors with bit-wise boolean operations. The algorithm is designed such that it can also decide some common cases of parameterized (non-fixed) size. To handle even more parameterized cases for bit-vectors without bit-wise boolean operations we devise a unification based algorithm which invokes the first algorithm symbolically on parameters of the form aN + b, where a and b are integers and N is the only unknown.",
+isbn="978-3-540-69753-4"
+}
+
+% file:///home/ixb140230/Downloads/978-3-642-31365-3.pdf
+% sequential circuits instead of automata. This more
+concrete implementation allows us to perform an optimization that will ensure that the
+presence of large integer constants in the formula does not necessarily cause a blow-up
+in the size of the transducer proportional to the value of that constant, as was the case
+with the previous approach
+% Frohlich cited Spielmann2012 for "QFPAbit is PSpace-Complete"
+@InProceedings{Spielmann2012,
+author="Spielmann, Andrej
+and Kuncak, Viktor",
+editor="Gramlich, Bernhard
+and Miller, Dale
+and Sattler, Uli",
+title="Synthesis for Unbounded Bit-Vector Arithmetic",
+booktitle="Automated Reasoning",
+year="2012",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="499--513",
+isbn="978-3-642-31365-3"
+}
+
+% Popular book for performant algorithms leveraging bit operations
+@misc{warren2013,
+author = {Warren, Henry S},
+address = {Place of publication not identified},
+edition = {2nd ed.},
+isbn = {9780133085006},
+keywords = {Computer programming},
+language = {eng},
+publisher = {Pearson Education},
+title = {Hacker's delight},
+year = {2013},
+}
+
+% SVC (Stanford Validity Checker) From 1998, uses Shostak Congruence Closure rather than Nelson Oppen
+% to combine theories and reason about validity. 
+@inproceedings{barrett1996,
+   author = {Clark W. Barrett and David L. Dill and Jeremy R. Levitt},
+   editor = {Mandayam Srivas and Albert Camilleri},
+   title = {Validity Checking for Combinations of Theories with Equality},
+   booktitle = {Proceedings of the {\it 1^{st}} International Conference
+	on Formal Methods In Computer-Aided Design (FMCAD '96)},
+   series = {Lecture Notes in Computer Science},
+   volume = {1166},
+   pages = {187--201},
+   publisher = {Springer-Verlag},
+   month = nov,
+   year = {1996},
+   note = {Palo Alto, California},
+   url = {http://theory.stanford.edu/~barrett/pubs/BDL96.pdf}
+}
+
+% Adds a BV decision procedure to SVC (above)
+@inproceedings{barrett1998,
+author = {Barrett, Clark W. and Dill, David L. and Levitt, Jeremy R.},
+title = {A decision procedure for bit-vector arithmetic},
+year = {1998},
+isbn = {0897919645},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/277044.277186},
+doi = {10.1145/277044.277186},
+booktitle = {Proceedings of the 35th Annual Design Automation Conference},
+pages = {522–527},
+numpages = {6},
+keywords = {voltage scaling, synthesis, placement, low power, level converters, flip-flops, design automatian, codec, MPEG4},
+location = {San Francisco, California, USA},
+series = {DAC '98}
+}
+
+% Describe Shostak's DP for combining theories in better detail.
+@article{cyrluk1996,
+author = {Cyrluk, David and Lincoln, Patrick and Shankar, Natarajan},
+year = {1996},
+month = {06},
+pages = {},
+title = {On Shostak's Decision Procedure for Combinations of Theories},
+isbn = {978-3-540-61511-8},
+journal = {Lecture Notes in Computer Science},
+doi = {10.1007/3-540-61511-3_107}
+}
+
+@article{CzajkaK18,
+  author       = {Lukasz Czajka and
+                  Cezary Kaliszyk},
+  title        = {Hammer for Coq: Automation for Dependent Type Theory},
+  journal      = {J. Autom. Reason.},
+  volume       = {61},
+  number       = {1-4},
+  pages        = {423--453},
+  year         = {2018},
+  url          = {https://doi.org/10.1007/s10817-018-9458-4},
+  doi          = {10.1007/S10817-018-9458-4},
+  timestamp    = {Wed, 02 Sep 2020 13:29:45 +0200},
+  biburl       = {https://dblp.org/rec/journals/jar/CzajkaK18.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+
