@@ -20,6 +20,7 @@ The names of edges are known as properties or relations.
 
 Example:
 
+```
 [ Tommy ] --- in_course ---> [ courses:id12345 ] --- course_name ---> [ Computer Science I ]
                                   |
                                   |
@@ -28,7 +29,7 @@ Example:
                                   |
                                   V
                               [ CS 1337 ]
-                                
+```
 
 ## Exploration
 
@@ -60,16 +61,20 @@ Wow!
 
 We also see that the structure of citations is:
 
+```
 [ Citation node ] --- hasCitingEntity ---> [ citing_node ]
     |
   hasCitedEntity
     |
     V 
 [ cited_node ]
+```
 
 Rather than the simpler format one may expect:
 
+```
 [ citing_node ] --- cites ---> [ cited_node ]
+```
 
 ### Articles
 
@@ -100,12 +105,14 @@ We develop 2 hypotheses:
 #### Hypothesis 2 - bridging the gap
 
 
+```
                                     [ cito citation node ] --- hasCitedEntity ---> ...
                                           |
                                       hasCitingEntity
                                           |
                                           V
 [ dblp node ] --- some property? ---> [ cito article node ]
+```
                                           
 
 We develop a query with some placeholder relation to some placeholder node
@@ -113,7 +120,9 @@ that has another place holder node pointing to it with the hasCitingEntity prope
 
 I.e.
 
+```
 [ Given Node ] --- [ Property ??? ] --- > [ Node ???] <--- [hasCitingEntity] --- [ Node ??? ]
+```
 
 ```sparql
 PREFIX cito: <http://purl.org/spar/cito/>
