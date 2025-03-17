@@ -37,12 +37,12 @@ Example:
 
 We start by figuring out how citations to an individual article work.
 
-For this we use the citation query example they present in their Knowledge Graph tutorial.
+For this we use the citation query example they present in their [Knowledge Graph tutorial](https://github.com/dblp/kg/wiki/dblp-KG-Tutorial).
 
 ```sparql
 PREFIX cito: <http://purl.org/spar/cito/>
 SELECT ?citation ?citing_omid ?cited_omid ?citation_date ?citation_timespan WHERE {
-  BIND(<https://GottenNode.org/oc/index/ci/06503267503-06703780559> as ?citation)
+  BIND(<https://w3id.org/oc/index/ci/06503267503-06703780559> as ?citation)
   ?citation cito:hasCitingEntity ?citing_omid .
   ?citation cito:hasCitedEntity ?cited_omid .
   OPTIONAL { ?citation cito:hasCitationCreationDate ?citation_date . }
@@ -51,7 +51,7 @@ SELECT ?citation ?citing_omid ?cited_omid ?citation_date ?citation_timespan WHER
 ```
 
 When we execute the query we get a single result. Many of the result values are links
-we can click, like the citation: [ 06503267503-06703780559](https://GottenNode.org/oc/index/ci/06503267503-06703780559).
+we can click, like the citation: [ 06503267503-06703780559](https://w3id.org/oc/index/ci/06503267503-06703780559).
 
 Clicking it takes us to a webpage hosted by the host of this information, which happens to be 
 a different org - not DBLP!  Take a few seconds to appreciate how cool this is - we're navigating
