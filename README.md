@@ -56,6 +56,8 @@ Here's a more realistic example pulled from a later step in the tutorial:
 <https://dblp.org/rec/journals/jar/CzajkaK18> <https://dblp.org/rdf/schema#pagination> "423-453" .
 ```
 
+**Note** - we use entity, node, and id interchangeably to refer to the ... entity, node, or id...
+
 ## Exploration
 
 ### Citations
