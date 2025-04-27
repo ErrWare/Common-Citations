@@ -1,10 +1,12 @@
 # Using DBLP Sparql Engine For Great Results!
 
-In this tutorial we show how to leverage DBLP's Sparql interface, released September 2024,
-to gather a list of citations from several articles of interest and see which ones they
-have in common.
+You're a research student given a list of papers to read.
+But what background knowledge do you need to put them all into context?
 
-These are the resources I used:
+In this tutorial we show how to find the citations common to a given list of papers by querying DBLP's knowledge graph through their public SPARQL ([wikipedia](https://en.wikipedia.org/wiki/SPARQL)) endpoint.
+For those not in the know, [DBLP](https://dblp.org/) is the premier go-to premium platinum-standard database for computer science articles.
+
+These are the resources I used to develop this tutorial:
 
   1. DBLP's Sparql service blog post ([link](https://blog.dblp.org/2024/09/09/introducing-our-public-sparql-query-service/))
   2. DBLP Knowledge Graph tutorial ([link](https://github.com/dblp/kg/wiki/dblp-KG-Tutorial))
@@ -15,13 +17,15 @@ These are the resources I used:
 ## Knowledge Graph Basics
 
 A graph is a bunch of nodes and a bunch of edges connecting them.
-A knowledge graph names each node and each edge.
-The names of edges are known as properties or relations.
+In a Knowledge Graph ([wikipedia](https://en.wikipedia.org/wiki/Knowledge_graph)),
+each node and each edge has a label.
+The labels of edges are known as properties or relations.
+The nodes represent entities, and the edges represent their properties or relationships to other entities.
 
 Example:
 
 ```
-[ Tommy ] --- in_course ---> [ courses:id12345 ] --- course_name ---> [ Computer Science I ]
+[ Tommy ] --- in_course ---> [ courses:id12345 ] --- course_name ---> "Computer Science I"
                                   |
                                   |
                              course_number
@@ -31,11 +35,33 @@ Example:
                               [ CS 1337 ]
 ```
 
+Typically these graphs are stored in [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework) format, which can be represented in many ways.
+The most simple is [N-Triples](https://en.wikipedia.org/wiki/N-Triples), which stores them as plain text triples in the format "<entity1> <property name> (<entity2> | value) ."
+Where `entity1`` is always a node, `property name` is the name of the edge (e.g. "course_number", or "in_course")"), and the third place is either another node, `entity2`, or a value (e.g. a string or number).
+
+Our example graph above would thus be represented as the RDF N-Triples file:
+
+```ntriples
+<Tommy> <in_course> <courses:id12345> .
+<courses:id12345> <course_name> "Computer Science I" .
+<courses:id12345> <course_number> <CS 1337> .
+```
+
+Here's a more realistic example pulled from a later step in the tutorial:
+
+```ntriples
+<https://dblp.org/rec/journals/jar/CzajkaK18> <http://www.w3.org/2002/07/owl#sameAs> <http://www.wikidata.org/entity/Q90699792> .
+<https://dblp.org/rec/journals/jar/CzajkaK18> <http://www.w3.org/2000/01/rdf-schema#label> "Lukasz Czajka and Cezary Kaliszyk: Hammer for Coq: Automation for Dependent Type Theory. (2018)" .
+<https://dblp.org/rec/journals/jar/CzajkaK18> <https://dblp.org/rdf/schema#publishedInStream> <https://dblp.org/streams/journals/jar> .
+<https://dblp.org/rec/journals/jar/CzajkaK18> <https://dblp.org/rdf/schema#pagination> "423-453" .
+```
+
 ## Exploration
 
 ### Citations
 
-We start by figuring out how citations to an individual article work.
+<FLAG></FLAG>
+We start our exploration of DBLP's public knowledge graph by figuring out how citations to an individual article are stored.
 
 For this we use the citation query example they present in their [Knowledge Graph tutorial](https://github.com/dblp/kg/wiki/dblp-KG-Tutorial).
 [Query Link.](https://sparql.dblp.org/H3ks8K)
@@ -95,13 +121,25 @@ We call this labeling process "reification."
 
 ### Articles
 
-Ok, so we see how articles work - there's some node, the citer, that has the property `cito:hasCitedEntity` to another
-node that represents the cited article, citee.
+Ok, so we've seen how citations work - there's a citation node and a node each for the citer and citee.
+The citation node has the property `cite:hasCitingEntity` to the citing article and `cito:hasCitedEntity` to the cited article.
 
-But, given an article like "Object Flow Integrity", how do we find out what node has the citation?
+But, given an article like "Object Flow Integrity", how do we find out which node is the "CitingEntity" we're looking for?
+In other words, which node corresponds to our article, "Object Flow Integrity".
 
-The website that hosts the citations, opencitations.net, doesn't seem to have a search interface...
+The website that hosts the citations, [opencitations.net](https://opencitations.net/), doesn't seem to have a search interface that indexes by article name...
+This creates a problem - we want to turn an article, starting with its name, into a list of its citations.
+We can't search OpenCitations for citations by giving it an article name.
+And we can't search DBLP for citations...
+We have to find a way to start with an article name, translate it through DBLP to query OpenCitations for the article's citations.
 
+```
+                     .========.                         .=================.
+                     |        |                         |                 |
+    article name --- |  DBLP  | --> cito:article_id --- |  OpenCitations  | --> citations 
+                     |        |                         |                 |
+                     |________|                         |_________________|
+```
 We develop 2 hypotheses:
 
   1.  Using the DBLP website we can find how DBLP represents the article we're interested in.
@@ -111,33 +149,44 @@ We develop 2 hypotheses:
 
 1. We go to [dblp.org](https://dblp.org/) and search for our article, e.g. "Coq Hammer"
 
-2. We find the RDF-N triples format for download
+2. Under the download button next to the search result we find and download the "RDF-N Triples" representation of the result.
 
-3. We open it up and ctrl-f search for the name of the article
+3. We open it up and ctrl-f search for the name of the article, e.g. "Hammer for Coq"
 
-4. We see that there's a node related to this article name
+4. We see that there's a node related to this article name - specifically the `<https://dblp.org/rec/journals/jar/CzajkaK18>` entry of the triple:
 
-5. Looks like this node probably represents the article!
+    ```ntriples
+    <https://dblp.org/rec/journals/jar/CzajkaK18> 
+      <https://dblp.org/rdf/schema#title> 
+      "Hammer for Coq: Automation for Dependent Type Theory." .
+    ```
+
+5. Looks like this node probably represents the article! But we don't have the cito:article_id just yet... this is only the id DBLP uses.
 
 #### Hypothesis 2 - bridging the gap
 
-Now we how to find the nodes dblp uses to represent articles, but the citation
-database doesn't use these - it uses its own nodes for representing articles.
+Now we know how to find the nodes DBLP uses to represent articles, but the citation
+database (opencitations.net) doesn't use these - it uses its own nodes for representing articles.
 How do we bridge this gap?
-What we're looking for is `some property` that relates dblp article nodes with their
-corresponding cito article nodes.
+How do we get OpenCitation's id for our article?
+What we're looking for is `some property` that relates DBLP article nodes with their
+corresponding OpenCitations (cito) article nodes.
 ```
-                                    [ cito citation node ] --- hasCitedEntity ---> ...
-                                          |
-                                      hasCitingEntity
-                                          |
-                                          V
-[ dblp node ] --- some property? ---> [ cito article node ]
+  + DBLP - - - - - - - -  + - - - OpenCitations - - - -
+  :                       :
+  : [ dblp node ]         :    [ cito citation node ] --- hasCitedEntity ---> ...
+  :    |                  :        |
+  :    |                  :      hasCitingEntity
+  :    |                  :        |
+  :    |                  :        V
+  :    + some property? -----> [ cito article node ]
+  :                       :
+  : _ _ _ _ _ _ _ _ _ _ _ : _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 ```
                                           
 
-We develop a query with some placeholder relation to some placeholder node
-that has another place holder node pointing to it with the hasCitingEntity property.
+To find the `some property` we're looking for let's develop a query with some placeholder relation to some placeholder node
+that has another placeholder node pointing to it with the hasCitingEntity property.
 Whew, what a mouthful.
 The picture below is worth a thousand words ([Query Link](https://sparql.dblp.org/xw9mY2)).
 
@@ -154,17 +203,26 @@ SELECT ?GivenNode ?BridgeProp ?GottenNode  WHERE {
 }
 ```
 
+```
+Query Results:
+GivenNode	                                  BridgeProp                      	GottenNode
+https://dblp.org/rec/journals/jar/CzajkaK18	https://dblp.org/rdf/schema#omid	https://w3id.org/oc/meta/br/061302860330
+...                                         ...                               ...
+
+```
+
 Presto!
-The property we're looking for, `BridgeProp` in the query, is dblp's omid property.
-Now, given a dblp article we can map it to the corresponding cito article and find out
+The property we're looking for, `BridgeProp` in the query, is DBLP's `<dblp:omid>` property.
+(What does omid stand for? I don't know. I do know that the `dblp:` prefix before the property name is a shorthand for the namespace, you can see it in use in the queries :)
+Now, given a DBLP article we can map it to the corresponding OpenCitations article and find out
 which articles it cites.
-This is much easier and more reliable than pdf and html processing.
+This is much easier and more reliable than trying to process pdfs of articles and normalizing their citation formats.
 
 ## Final
 
 
 To finalize our example we hardcode some of the articles we're interested in
-and add some SQL aggregations and filtering.
+and add some standard SQL aggregations and filtering.
 What we get is the query below ([Query Link](https://sparql.dblp.org/8A4MNH))
 
 ```
@@ -176,18 +234,18 @@ SELECT ?CitedNode  ?CitedTitle ?URL
 (REPLACE(GROUP_CONCAT(DISTINCT ?Title ; SEPARATOR=", "), ".,", ",") AS ?Citers)
 WHERE {
   Values ?GivenNode {
-  # Hammer for Coq
-  <https://dblp.org/rec/journals/jar/CzajkaK18>
-  # Goal Translation for Hammer for Coq
-  <https://dblp.org/rec/journals/corr/CzajkaK16>
-  # Practical Proof Search for Coq by Type Inhabitation
-  <https://dblp.org/rec/conf/cade/000120a>
-  # A Shallow Embedding of Pure Type Systems into FOL
-  <https://dblp.org/rec/conf/types/Czajka16>
-  # Concrete Semantics with Coq and CoqHammer 2018
-  <https://dblp.org/rec/conf/mkm/CzajkaEK18>
-  # Concrete Semantics with Coq and CoqHammer 2016
-  <https://dblp.org/rec/journals/corr/abs-1808-06413>
+    # Hammer for Coq
+      <https://dblp.org/rec/journals/jar/CzajkaK18>
+    # Goal Translation for Hammer for Coq
+      <https://dblp.org/rec/journals/corr/CzajkaK16>
+    # Practical Proof Search for Coq by Type Inhabitation
+      <https://dblp.org/rec/conf/cade/000120a>
+    # A Shallow Embedding of Pure Type Systems into FOL
+      <https://dblp.org/rec/conf/types/Czajka16>
+    # Concrete Semantics with Coq and CoqHammer 2018
+      <https://dblp.org/rec/conf/mkm/CzajkaEK18>
+    # Concrete Semantics with Coq and CoqHammer 2016
+      <https://dblp.org/rec/journals/corr/abs-1808-06413>
   }.
   ?GivenNode dblp:title ?Title.
   ?GivenNode dblp:omid ?GottenNode .
@@ -195,8 +253,8 @@ WHERE {
   ?citation cito:hasCitedEntity ?CitedNode .
   ?CitedNode schema:url ?URL
   Optional {
-  ?DblpCitation dblp:omid ?CitedNode .
-  ?DblpCitation dblp:title ?CitedTitle. }
+    ?DblpCitation dblp:omid ?CitedNode .
+    ?DblpCitation dblp:title ?CitedTitle. }
 }
 GROUP BY ?CitedNode ?CitedTitle ?URL
 ORDER BY DESC(?N)
@@ -204,17 +262,18 @@ ORDER BY DESC(?N)
 
 ### But Wait, Where's the Title?
 
-There's a missing title for some of the cited material.
+The title is missing for one of the cited articles!
 
-Probably this Sparql endpoint doesn't host all of the information in order 
+Probably this SPARQL endpoint doesn't host all of the information in order 
 to save on resources. That means we need to FEDERATE our query, meaning we
-need to shoot a part of our query off to a different endpoint that does
+need to shoot off a part of our query to a different endpoint that does
 host the information we want.
-By asking on the github forum for the dblp Knowledge Graph we find the
+By asking on the DBLP's Knowledge Graph github forum we find the
 information we want is the dct:title hosted by purl.org ([github question](https://github.com/dblp/kg/discussions/6)).
 The query below demonstrates federation and the difference in information
-between two databases - not only does dct have a book that's missing from
-dblp, but they disagree on the title of an article they have in common.
+between two databases - not only does dct have an article that's missing from
+DBLP, but they disagree on the title of an article they have in common. 
+[Query Link](https://sparql.dblp.org/SEzXgB).
 
 ```
 
@@ -271,10 +330,9 @@ SELECT ?cited_omid	?cited_dblp_title	?cited_oc_title WHERE {
 I hope this introduction to knowledge graphs and its demonstration was useful.
 From here you can look at the included shell scripts for ideas on how to 
 automate some useful queries.
-You can also check out the resources below for more graphically represented 
-data you can do things with.
+You can also check out the resources below for more knowledge graphs you can explore.
 
-Open Knowledge Graph resources:
+Open Knowledge Graph databases:
 
   1.  [DBPedia](https://www.dbpedia.org/)
   2.  [UK Government](https://www.data.gov.uk/)
