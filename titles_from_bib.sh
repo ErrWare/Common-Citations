@@ -1,5 +1,10 @@
 #!/bin/sh
-# First arg is the bibliography in bibtex format
+
+# Extracts the titles from a bibtex bibliography.
+#
+# Usage:
+#   titles_from_bib.sh path/to/bibliography.bib
+
 BIBFILE="$1"
 
 grep -w title "$BIBFILE" | sed 's/^[^{"]*[{"]//; s/[:/"}].*$//'

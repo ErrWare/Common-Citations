@@ -38,6 +38,7 @@ Example:
 We start by figuring out how citations to an individual article work.
 
 For this we use the citation query example they present in their [Knowledge Graph tutorial](https://github.com/dblp/kg/wiki/dblp-KG-Tutorial).
+[Query Link.](https://sparql.dblp.org/H3ks8K)
 
 ```sparql
 PREFIX cito: <http://purl.org/spar/cito/>
@@ -59,8 +60,15 @@ a world wide web of open information using this query interface...
 
 Wow!
 
-We also see that the structure of citations is:
+By examining the query we can learn the structure of citations in this database.
+These two lines...
 
+```sparql
+  ?citation cito:hasCitingEntity ?citing_omid .
+  ?citation cito:hasCitedEntity ?cited_omid .
+```
+
+... tell us that the graph looks like this ...
 ```
 [ Citation node ] --- hasCitingEntity ---> [ citing_node ]
     |
@@ -76,12 +84,21 @@ Rather than the simpler format one may expect:
 [ citing_node ] --- cites ---> [ cited_node ]
 ```
 
+A pedagogical aside:
+This representation of citations is an example of the oft confusing but ubiquitous concept of "reification," which is the big brain synonym of "labeling."
+Instead of encoding the citation relationship between the citer and the citee as an edge, 
+we give the citation itself a node, thus labelling it.
+This labeling of the citation itself allows us to talk about it,
+discussing any number of things like when it was created and who created it,
+rather than just who cited what.
+We call this labeling process "reification."
+
 ### Articles
 
-Ok, so we see how articles work - there's some node that has the property `cito:hasCitedEntity` to another
-node that represents the cited article.
+Ok, so we see how articles work - there's some node, the citer, that has the property `cito:hasCitedEntity` to another
+node that represents the cited article, citee.
 
-But how do we find out what node has the citation?
+But, given an article like "Object Flow Integrity", how do we find out what node has the citation?
 
 The website that hosts the citations, opencitations.net, doesn't seem to have a search interface...
 
@@ -92,7 +109,7 @@ We develop 2 hypotheses:
 
 #### Hypothesis 1 - finding the node
 
-1. We go to [dblp.org](https://dblp.org/) and search for our article, e.g. "Coq hammer"
+1. We go to [dblp.org](https://dblp.org/) and search for our article, e.g. "Coq Hammer"
 
 2. We find the RDF-N triples format for download
 
@@ -104,7 +121,11 @@ We develop 2 hypotheses:
 
 #### Hypothesis 2 - bridging the gap
 
-
+Now we how to find the nodes dblp uses to represent articles, but the citation
+database doesn't use these - it uses its own nodes for representing articles.
+How do we bridge this gap?
+What we're looking for is `some property` that relates dblp article nodes with their
+corresponding cito article nodes.
 ```
                                     [ cito citation node ] --- hasCitedEntity ---> ...
                                           |
@@ -117,11 +138,11 @@ We develop 2 hypotheses:
 
 We develop a query with some placeholder relation to some placeholder node
 that has another place holder node pointing to it with the hasCitingEntity property.
-
-I.e.
+Whew, what a mouthful.
+The picture below is worth a thousand words ([Query Link](https://sparql.dblp.org/xw9mY2)).
 
 ```
-[ Given Node ] --- [ Property ??? ] --- > [ Node ???] <--- [hasCitingEntity] --- [ Node ??? ]
+[ Given Node ] ---  Property ???  --- > [ Node ???] <--- hasCitingEntity --- [ Node ??? ]
 ```
 
 ```sparql
@@ -132,7 +153,19 @@ SELECT ?GivenNode ?BridgeProp ?GottenNode  WHERE {
   ?citation cito:hasCitingEntity ?GottenNode .
 }
 ```
+
+Presto!
+The property we're looking for, `BridgeProp` in the query, is dblp's omid property.
+Now, given a dblp article we can map it to the corresponding cito article and find out
+which articles it cites.
+This is much easier and more reliable than pdf and html processing.
+
 ## Final
+
+
+To finalize our example we hardcode some of the articles we're interested in
+and add some SQL aggregations and filtering.
+What we get is the query below ([Query Link](https://sparql.dblp.org/8A4MNH))
 
 ```
 PREFIX cito: <http://purl.org/spar/cito/>
@@ -177,9 +210,36 @@ Probably this Sparql endpoint doesn't host all of the information in order
 to save on resources. That means we need to FEDERATE our query, meaning we
 need to shoot a part of our query off to a different endpoint that does
 host the information we want.
+By asking on the github forum for the dblp Knowledge Graph we find the
+information we want is the dct:title hosted by purl.org ([github question](https://github.com/dblp/kg/discussions/6)).
+The query below demonstrates federation and the difference in information
+between two databases - not only does dct have a book that's missing from
+dblp, but they disagree on the title of an article they have in common.
 
-A simple example:
+```
 
+  [ citing_dblp_publ  ]  ---   dblp:omid  ---> [ citing_omid ]
+          |                                           ^
+      dblp:title                                      |
+          |                                  cito:hasCitingEntity
+          V                                           |
+  [ citing_dblp_title ]                         [ citation ]
+                                                      |
+                                             cito:hasCitedEntity
+                                                      |
+                                                      V
+  [ cited_dblp_publ   ]  <---  dblp:omid    --- [ cited_omid ]
+          |                                           |
+      dblp:title                            __________|___________
+          |                    Federated   |          |           |
+          V                    to: dct     |      dct:title       |
+  [ cited_dblp_title  ]                    |          |           |
+                                           |  [ cited_oc_title ]  |
+                                           |                      |
+                                           |______________________|
+
+
+```
 ```sparql
 PREFIX cito: <http://purl.org/spar/cito/>
 PREFIX dblp: <https://dblp.org/rdf/schema#>
@@ -200,14 +260,19 @@ SELECT ?cited_omid	?cited_dblp_title	?cited_oc_title WHERE {
 #                                          #
 # # # # # # # # # # # # # # # # # # # # #  #
   SERVICE <https://opencitations.net/meta/sparql> {
-    OPTIONAL { ?cited_omid dct:title ?cited_oc_title .
- }
+    OPTIONAL { ?cited_omid dct:title ?cited_oc_title . }
   }
 }
 ```
 
 
 ## Where to go from here?
+
+I hope this introduction to knowledge graphs and its demonstration was useful.
+From here you can look at the included shell scripts for ideas on how to 
+automate some useful queries.
+You can also check out the resources below for more graphically represented 
+data you can do things with.
 
 Open Knowledge Graph resources:
 
@@ -220,5 +285,5 @@ Open Knowledge Graph resources:
 Public Sparql Endpoints:
 
   1.  [DBpedia](https://dbpedia.org/sparql)
-  2.  [DBLP](https://sparql.dblp.org/)- this is what we used in the presentation
+  2.  [DBLP](https://sparql.dblp.org/) - this is what we used in the presentation
   3.  [Open Street Maps](https://qlever.cs.uni-freiburg.de/osm-planet/q46NYb)

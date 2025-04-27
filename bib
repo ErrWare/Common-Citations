@@ -1,22 +1,26 @@
-
-%% Ergo? Alt-Ergo?
-%% https://alt-ergo.ocamlpro.com/
-@InProceedings{10.1007/978-3-642-04222-5_18,
-author="Lescuyer, St{\'e}phane
-and Conchon, Sylvain",
-editor="Ghilardi, Silvio
-and Sebastiani, Roberto",
-title="Improving Coq Propositional Reasoning Using a Lazy CNF Conversion Scheme",
-booktitle="Frontiers of Combining Systems",
-year="2009",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="287--303",
-abstract="In an attempt to improve automation capabilities in the Coq proof assistant, we develop a tactic for the propositional fragment based on the DPLL procedure. Although formulas naturally arising in interactive proofs do not require a state-of-the-art SAT solver, the conversion to clausal form required by DPLL strongly damages the performance of the procedure. In this paper, we present a reflexive DPLL algorithm formalized in Coq which outperforms the existing tactics. It is tightly coupled with a lazy CNF conversion scheme which, unlike Tseitin-style approaches, does not disrupt the procedure. This conversion relies on a lazy mechanism which requires slight adaptations of the original DPLL. As far as we know, this is the first formal proof of this mechanism and its Coq implementation raises interesting challenges.",
-isbn="978-3-642-04222-5"
+@phdthesis{Lescuyer11,
+  author       = {St{\'{e}}phane Lescuyer},
+  title        = {Formalizing and Implementing a Reflexive Tactic for Automated Deduction
+    in Coq. (Formalisation et developpement d'une tactique reflexive pour
+        la demonstration automatique en coq)},
+  school       = {University of Paris-Sud, Orsay, France},
+  year         = {2011},
+  url          = {https://tel.archives-ouvertes.fr/tel-00713668},
+  timestamp    = {Tue, 21 Jul 2020 00:40:52 +0200},
+  biburl       = {https://dblp.org/rec/phd/hal/Lescuyer11.bib},
 }
 
-%% PAbit
+@InProceedings{Lescuyer09,
+  author="Lescuyer, St{\'e}phane and Conchon, Sylvain",
+  editor="Ghilardi, Silvio and Sebastiani, Roberto",
+  title="Improving Coq Propositional Reasoning Using a Lazy CNF Conversion Scheme",
+  booktitle="Frontiers of Combining Systems",
+  year="2009",
+  publisher="Springer Berlin Heidelberg",
+  pages="287--303",
+  isbn="978-3-642-04222-5"
+}
+
 @phdthesis{Schule2007,
   author       = {Tobias Sch{\"{u}}le},
   title        = {Verification of infinite state systems using Presburger arithmetic},
@@ -26,205 +30,145 @@ isbn="978-3-642-04222-5"
   isbn         = {978-3-89963-562-1},
   timestamp    = {Sat, 17 Jul 2021 09:07:36 +0200},
   biburl       = {https://dblp.org/rec/phd/de/Schule2007.bib},
-  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
-% 2.4.2: care has to be taken with automata representing formulas of Presburger arithmetic, since the alphabet of such automata can be very large. In fact, the size of the alphabet is exponential in the number of variables 
-% For these reasons, we use another approach that leverages BDDs
 
-% Tarski Decidability Results
 @article{Doner1988,
-author = {Doner, John and Hodges, Wilfrid},
-address = {New York, USA},
-copyright = {Copyright 1988 Association for Symbolic Logic, Inc.},
-issn = {0022-4812},
-journal = {The Journal of symbolic logic},
-keywords = {Algebra ; Axioms ; Decidability ; Decision making ; Decision theory ; First order theories ; Lindenbaum Tarski algebra ; Logical theorems ; Mathematical theorems ; Philosophical logics. Philosophy of language ; Philosophy ; Quantifier elimination ; Survey/Expository Papers},
-language = {eng},
-number = {1},
-pages = {20-35},
-publisher = {Cambridge University Press},
-title = {Alfred Tarski and decidable theories},
-volume = {53},
-year = {1988},
+  author = {Doner, John and Hodges, Wilfrid},
+  copyright = {Copyright 1988 Association for Symbolic Logic, Inc.},
+  issn = {0022-4812},
+  journal = {The Journal of symbolic logic},
+  number = {1},
+  pages = {20-35},
+  publisher = {Cambridge University Press},
+  title = {Alfred Tarski and decidable theories},
+  volume = {53},
+  year = {1988},
 }
 
 @article{McNulty1986,
-author = {McNulty, George F.},
-address = {New York, USA},
-copyright = {Copyright 1986 Association of Symbolic Logic, Inc.},
-issn = {0022-4812},
-journal = {The Journal of symbolic logic},
-keywords = {Algebra ; Atomic theory ; Decidability ; Interpretability ; Mathematical logic ; Mathematical set theory ; Mathematical sets ; Peano axioms ; Relation algebras ; Survey/Expository Papers ; Undecidability},
-language = {eng},
-number = {4},
-pages = {890-898},
-publisher = {Cambridge University Press},
-title = {Alfred Tarski and undecidable theories},
-volume = {51},
-year = {1986},
+  author = {McNulty, George F.},
+  copyright = {Copyright 1986 Association of Symbolic Logic, Inc.},
+  issn = {0022-4812},
+  journal = {The Journal of symbolic logic},
+  keywords = {Algebra ; Atomic theory ; Decidability ; Interpretability ; Mathematical logic ; Mathematical set theory ; Mathematical sets ; Peano axioms ; Relation algebras ; Survey/Expository Papers ; Undecidability},
+  number = {4},
+  pages = {890-898},
+  publisher = {Cambridge University Press},
+  title = {Alfred Tarski and undecidable theories},
+  volume = {51},
+  year = {1986},
 }
 
-% Wanda's decision procedure for abelian groups
 @article{Szmielew1955,
-author = {Szmielew, Wanda},
-issn = {0016-2736},
-journal = {Fundamenta mathematicae},
-language = {eng},
-number = {2},
-pages = {203-271},
-title = {Elementary properties of Abelian groups},
-volume = {41},
-year = {1955},
+  author = {Szmielew, Wanda},
+  issn = {0016-2736},
+  journal = {Fundamenta mathematicae},
+  number = {2},
+  pages = {203-271},
+  title = {Elementary properties of Abelian groups},
+  volume = {41},
+  year = {1955},
 }
 
-% Church's undecidability of Peano Arith
 @article{ChurchAlonzo1936AUPo,
-author = {Church, Alonzo},
-issn = {0002-9327},
-journal = {American journal of mathematics},
-keywords = {Integers ; Logical theorems ; Mathematical functions ; Mathematical sets ; Mathematical theorems ; Mathematics ; Number theory ; Recursion ; Recursive functions ; Well formed formulas},
-language = {eng},
-number = {2},
-pages = {345-363},
-publisher = {Johns Hopkins Press},
-title = {An Unsolvable Problem of Elementary Number Theory},
-volume = {58},
-year = {1936},
+  author = {Church, Alonzo},
+  issn = {0002-9327},
+  journal = {American journal of mathematics},
+  keywords = {Integers ; Logical theorems ; Mathematical functions ; Mathematical sets ; Mathematical theorems ; Mathematics ; Number theory ; Recursion ; Recursive functions ; Well formed formulas},
+  number = {2},
+  pages = {345-363},
+  publisher = {Johns Hopkins Press},
+  title = {An Unsolvable Problem of Elementary Number Theory},
+  volume = {58},
+  year = {1936},
 }
 
-
-% New and improved LIA DP
-% References 3 categories of 
-% Define algorithmic and descriptional complexity
 @inproceedings{Chistikov2022,
-author = {Chistikov, Dmitry and Haase, Christoph and Mansutti, Alessio and Baier, Christel},
-address = {New York, NY, USA},
-booktitle = {Proceedings of the 37th Annual ACM/IEEE Symposium on Logic in Computer Science},
-copyright = {2022 ACM},
-isbn = {1450393519},
-keywords = {Theory of computation ; Theory of computation -- Randomness geometry and discrete structures},
-language = {eng},
-pages = {1-13},
-publisher = {ACM},
-title = {Geometric decision procedures and the VC dimension of linear arithmetic theories},
-year = {2022},
+  author = {Chistikov, Dmitry and Haase, Christoph and Mansutti, Alessio and Baier, Christel},
+  booktitle = {Proceedings of the 37th Annual ACM/IEEE Symposium on Logic in Computer Science},
+  copyright = {2022 ACM},
+  isbn = {1450393519},
+  keywords = {Theory of computation ; Theory of computation -- Randomness geometry and discrete structures},
+  pages = {1-13},
+  publisher = {ACM},
+  title = {Geometric decision procedures and the VC dimension of linear arithmetic theories},
+  year = {2022},
 }
 
-% Bounds on Quant Elim for PA
 @inproceedings{Weispfenning1997,
-author = {Weispfenning, Volker},
-title = {Complexity and uniformity of elimination in Presburger arithmetic},
-year = {1997},
-isbn = {0897918754},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/258726.258746},
-doi = {10.1145/258726.258746},
-booktitle = {Proceedings of the 1997 International Symposium on Symbolic and Algebraic Computation},
-pages = {48–53},
-numpages = {6},
-location = {Kihei, Maui, Hawaii, USA},
-series = {ISSAC '97}
+  author = {Weispfenning, Volker},
+  title = {Complexity and uniformity of elimination in Presburger arithmetic},
+  year = {1997},
+  isbn = {0897918754},
+  publisher = {Association for Computing Machinery},
+  url = {https://doi.org/10.1145/258726.258746},
+  doi = {10.1145/258726.258746},
+  booktitle = {Proceedings of the 1997 International Symposium on Symbolic and Algebraic Computation},
+  pages = {48–53},
+  numpages = {6},
+  location = {Kihei, Maui, Hawaii, USA},
+  series = {ISSAC '97}
 }
 
-% we give an application to quantifier elimination in integer linear arithmetic where the variables in a block of quantifiers, if independent, could be eliminated with an exponential (instead of the standard doubly exponential) blow-up.
 @inproceedings{Hague2020,
-author = {Hague, Matthew and Lin, Anthony W. and R\"{u}mmer, Philipp and Wu, Zhilin},
-title = {Monadic Decomposition in Integer Linear Arithmetic},
-year = {2020},
-isbn = {978-3-030-51073-2},
-publisher = {Springer-Verlag},
-address = {Berlin, Heidelberg},
-url = {https://doi.org/10.1007/978-3-030-51074-9_8},
-doi = {10.1007/978-3-030-51074-9_8},
-booktitle = {Automated Reasoning: 10th International Joint Conference, IJCAR 2020, Paris, France, July 1–4, 2020, Proceedings, Part I},
-pages = {122–140},
-numpages = {19},
-location = {Paris, France}
+  author = {Hague, Matthew and Lin, Anthony W. and R\"{u}mmer, Philipp and Wu, Zhilin},
+  title = {Monadic Decomposition in Integer Linear Arithmetic},
+  year = {2020},
+  isbn = {978-3-030-51073-2},
+  publisher = {Springer-Verlag},
+  url = {https://doi.org/10.1007/978-3-030-51074-9_8},
+  doi = {10.1007/978-3-030-51074-9_8},
+  booktitle = {Automated Reasoning: 10th International Joint Conference, IJCAR 2020, Paris, France, July 1–4, 2020, Proceedings, Part I},
+  pages = {122–140},
+  numpages = {19},
+  location = {Paris, France}
 }
 
-% Section 2.2.2 describe undecidable extensions to PA
 @phdthesis{Lechner2016,
-author = {Lechner, Antonia},
-copyright = {Database copyright ProQuest LLC; ProQuest does not claim copyright in the individual underlying works.},
-isbn = {9798302886217},
-keywords = {Applied Mathematics ; Equality ; Language ; Linear algebra ; Multiplication & division ; Polynomials ; Temporal logic},
-language = {eng},
-publisher = {ProQuest Dissertations & Theses},
-title = {Extensions of Presburger Arithmetic and Model Checking One-Counter Automata},
-year = {2016},
-school = {University of Oxford},
+  author = {Lechner, Antonia},
+  copyright = {Database copyright ProQuest LLC; ProQuest does not claim copyright in the individual underlying works.},
+  isbn = {9798302886217},
+  publisher = {ProQuest Dissertations & Theses},
+  title = {Extensions of Presburger Arithmetic and Model Checking One-Counter Automata},
+  year = {2016},
+  school = {University of Oxford},
 }
 
-% General Decidable Extensions of PA
-% (Extending with a relation R that satisfies certain properties)
-@article{Point2000,
- ISSN = {00224812},
- URL = {http://www.jstor.org/stable/2586704},
- author = {Françoise Point},
- journal = {The Journal of Symbolic Logic},
- number = {3},
- pages = {1347--1374},
- publisher = {Association for Symbolic Logic},
- title = {On Decidable Extensions of Presburger Arithmetic: From A. Bertrand Numeration Systems to Pisot Numbers},
- urldate = {2025-02-25},
- volume = {65},
- year = {2000}
-}
-
-% Section 16.3.3 - Deciding Bit-Vector Arithmetic
-% page 525/980 in pdf
-% Also covers Tseitsin equisatisfiability transformation in CNF chapter
+  % General Decidable Extensions of PA
+  @article{Point2000,
+    ISSN = {00224812},
+    URL = {http://www.jstor.org/stable/2586704},
+    author = {Françoise Point},
+    journal = {The Journal of Symbolic Logic},
+    number = {3},
+    pages = {1347--1374},
+    publisher = {Association for Symbolic Logic},
+    title = {On Decidable Extensions of Presburger Arithmetic: From A. Bertrand Numeration Systems to Pisot Numbers},
+    urldate = {2025-02-25},
+    volume = {65},
+    year = {2000}
+  }
 @misc{Biere2009,
-author = {Biere, Armin.},
-address = {Amsterdam, The Netherlands ;},
-booktitle = {Handbook of satisfiability},
-language = {eng},
-publisher = {IOS Press},
-series = {Frontiers in artificial intelligence and applications, v. 185},
-title = {Handbook of satisfiability },
-year = {2009},
+  author = {Biere, Armin.},
+  booktitle = {Handbook of satisfiability},
+  publisher = {IOS Press},
+  series = {Frontiers in artificial intelligence and applications, v. 185},
+  title = {Handbook of satisfiability },
+  year = {2009},
 }
 
-% Haven't read this yet
-@inproceedings{Barrett1998,
-author = {Barrett, Clark W. and Dill, David L. and Levitt, Jeremy R.},
-title = {A decision procedure for bit-vector arithmetic},
-year = {1998},
-isbn = {0897919645},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/277044.277186},
-doi = {10.1145/277044.277186},
-booktitle = {Proceedings of the 35th Annual Design Automation Conference},
-pages = {522–527},
-numpages = {6},
-keywords = {voltage scaling, synthesis, placement, low power, level converters, flip-flops, design automatian, codec, MPEG4},
-location = {San Francisco, California, USA},
-series = {DAC '98}
-}
-
-% SAT / k-SAT probably exponential in worst case
 @inproceedings{Impagliazzo1999,
-author = {Impagliazzo, R. and Paturi, R.},
-booktitle = {Proceedings. Fourteenth Annual IEEE Conference on Computational Complexity (Formerly: Structure in Complexity Theory Conference) (Cat.No.99CB36317)},
-isbn = {0769500757},
-issn = {1093-0159},
-keywords = {Algorithm design and analysis ; Educational programs ; NP-complete problem ; Polynomials ; Upper bound},
-language = {eng},
-pages = {237-240},
-publisher = {IEEE},
-title = {Complexity of k-SAT},
-year = {1999},
+  author = {Impagliazzo, R. and Paturi, R.},
+  booktitle = {Proceedings. Fourteenth Annual IEEE Conference on Computational Complexity (Formerly: Structure in Complexity Theory Conference) (Cat.No.99CB36317)},
+  isbn = {0769500757},
+  issn = {1093-0159},
+  keywords = {Algorithm design and analysis ; Educational programs ; NP-complete problem ; Polynomials ; Upper bound},
+  pages = {237-240},
+  publisher = {IEEE},
+  title = {Complexity of k-SAT},
+  year = {1999},
 }
 
-% "Instead, modern SAT solvers, meanwhile, are very efficient in dealing with practical problems, solving formulas with up to 10^7 variables."
-% QBF and DQBF are the prototypical problems of PSpace- and NExpTime-Complete families respectively.
-% Practical solvers for QBF exist, e.g., [...]
-% What problems does QBF capture?
-% What is EPR? What problems does it capture?
-% " To really understand a computational problem and the difficulties that might arise with it, it is essential to know its complexity."
-% Chapter 10 - SLS (Stochastic LS) - solving bitvec SAT sans bit-blasting and re-encoding
 @phdthesis{frohlich2016,
   title={Theoretical and practical aspects of bit-vector reasoning/eingereicht von Dipl.-Inf. Andreas Fr{\"o}hlich},
   author={Fr{\"o}hlich, Andreas},
@@ -234,138 +178,82 @@ year = {1999},
 }
 
 @misc{VardiMosheY.2014Bsta,
-abstract = {The Boolean Satisfiability Problem (SAT, for short) asks whether a given Boolean formula, with Boolean gates such as AND and NOT, has some assignment of Os and 1s to its input variables such that the formula yields the value 1. SAT has been a problem of central importance in computer science since Stephen Cook proved its NP-completeness in 1971. To resolve the P vs. NP question, one of the most outstanding open questions in computer science and mathematics, one would have to show whether SAT is or is not in P, that is, whether it can be or cannot be solved in polynomial time. Most modern-day SAT-solving algorithms are based on the work of Martin Davis and Hilary Putnam in a 1958 technical report written for the National Security Agency.},
-author = {Vardi, Moshe Y.},
-address = {New York},
-copyright = {Copyright Association for Computing Machinery Mar 2014},
-issn = {0001-0782},
-journal = {Communications of the ACM},
-keywords = {Algorithms ; Boolean ; Computer science ; Operating systems},
-language = {eng},
-number = {3},
-pages = {5-5},
-publisher = {Association for Computing Machinery},
-title = {Boolean satisfiability: theory and engineering},
-volume = {57},
-year = {2014},
+  author = {Vardi, Moshe Y.},
+  copyright = {Copyright Association for Computing Machinery Mar 2014},
+  issn = {0001-0782},
+  journal = {Communications of the ACM},
+  keywords = {Algorithms ; Boolean ; Computer science ; Operating systems},
+  number = {3},
+  pages = {5-5},
+  publisher = {Association for Computing Machinery},
+  title = {Boolean satisfiability: theory and engineering},
+  volume = {57},
+  year = {2014},
 }
 
-%% The following 3 were referenced from Frolich's dissertation (Ch 2) as discussing unfixed-length bitvectors
 @article{AyariAbdelwaheb2003Dpfi,
-author = {Ayari, Abdelwaheb and Basin, David and Klaedtke, Felix},
-address = {Amsterdam},
-copyright = {2002 Elsevier Science B.V.},
-issn = {0304-3975},
-journal = {Theoretical computer science},
-keywords = {Algorithmics. Computability. Computer arithmetics ; Alternating automaton ; Applied sciences ; Computer science; control theory; systems ; Exact sciences and technology ; Inductive Boolean function ; Logic and foundations ; Mathematical logic foundations set theory ; Mathematics ; Parameterized circuit ; Recursion theory ; Sciences and techniques of general use ; Theoretical computing ; Verification},
-language = {eng},
-number = {1},
-pages = {301-329},
-publisher = {Elsevier B.V},
-title = {Decision procedures for inductive Boolean functions based on alternating automata},
-volume = {300},
-year = {2003},
-}
-@InProceedings{bjorner1998,
-author="Bj{\O}rner, Nikolaj S.
-and Pichora, Mark C.",
-editor="Steffen, Bernhard",
-title="Deciding fixed and non-fixed size bit-vectors",
-booktitle="Tools and Algorithms for the Construction and Analysis of Systems",
-year="1998",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="376--392",
-abstract="We develop a new, efficient, and compact decision procedure for fixed size bit-vectors with bit-wise boolean operations. The algorithm is designed such that it can also decide some common cases of parameterized (non-fixed) size. To handle even more parameterized cases for bit-vectors without bit-wise boolean operations we devise a unification based algorithm which invokes the first algorithm symbolically on parameters of the form aN + b, where a and b are integers and N is the only unknown.",
-isbn="978-3-540-69753-4"
+  author = {Ayari, Abdelwaheb and Basin, David and Klaedtke, Felix},
+  copyright = {2002 Elsevier Science B.V.},
+  issn = {0304-3975},
+  journal = {Theoretical computer science},
+  keywords = {Algorithmics. Computability. Computer arithmetics ; Alternating automaton ; Applied sciences ; Computer science; control theory; systems ; Exact sciences and technology ; Inductive Boolean function ; Logic and foundations ; Mathematical logic foundations set theory ; Mathematics ; Parameterized circuit ; Recursion theory ; Sciences and techniques of general use ; Theoretical computing ; Verification},
+  number = {1},
+  pages = {301-329},
+  publisher = {Elsevier B.V},
+  title = {Decision procedures for inductive Boolean functions based on alternating automata},
+  volume = {300},
+  year = {2003},
 }
 
-% file:///home/ixb140230/Downloads/978-3-642-31365-3.pdf
-% sequential circuits instead of automata. This more
+@InProceedings{bjorner1998,
+  author="Bj{\O}rner, Nikolaj S. and Pichora, Mark C.",
+  editor="Steffen, Bernhard",
+  title="Deciding fixed and non-fixed size bit-vectors",
+  booktitle="Tools and Algorithms for the Construction and Analysis of Systems",
+  year="1998",
+  publisher="Springer Berlin Heidelberg",
+  pages="376--392",
+  isbn="978-3-540-69753-4"
+}
+
 concrete implementation allows us to perform an optimization that will ensure that the
 presence of large integer constants in the formula does not necessarily cause a blow-up
 in the size of the transducer proportional to the value of that constant, as was the case
 with the previous approach
-% Frohlich cited Spielmann2012 for "QFPAbit is PSpace-Complete"
 @InProceedings{Spielmann2012,
-author="Spielmann, Andrej
-and Kuncak, Viktor",
-editor="Gramlich, Bernhard
-and Miller, Dale
-and Sattler, Uli",
-title="Synthesis for Unbounded Bit-Vector Arithmetic",
-booktitle="Automated Reasoning",
-year="2012",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="499--513",
-isbn="978-3-642-31365-3"
+  author="Spielmann, Andrej and Kuncak, Viktor",
+  editor="Gramlich, Bernhard and Miller, Dale and Sattler, Uli",
+  title="Synthesis for Unbounded Bit-Vector Arithmetic",
+  booktitle="Automated Reasoning",
+  year="2012",
+  publisher="Springer Berlin Heidelberg",
+  pages="499--513",
+  isbn="978-3-642-31365-3"
 }
 
-% Popular book for performant algorithms leveraging bit operations
 @misc{warren2013,
-author = {Warren, Henry S},
-address = {Place of publication not identified},
-edition = {2nd ed.},
-isbn = {9780133085006},
-keywords = {Computer programming},
-language = {eng},
-publisher = {Pearson Education},
-title = {Hacker's delight},
-year = {2013},
+  author = {Warren, Henry S},
+  edition = {2nd ed.},
+  isbn = {9780133085006},
+  keywords = {Computer programming},
+  publisher = {Pearson Education},
+  title = {Hacker's delight},
+  year = {2013},
 }
 
-% SVC (Stanford Validity Checker) From 1998, uses Shostak Congruence Closure rather than Nelson Oppen
-% to combine theories and reason about validity. 
-@inproceedings{barrett1996,
-   author = {Clark W. Barrett and David L. Dill and Jeremy R. Levitt},
-   editor = {Mandayam Srivas and Albert Camilleri},
-   title = {Validity Checking for Combinations of Theories with Equality},
-   booktitle = {Proceedings of the {\it 1^{st}} International Conference
-	on Formal Methods In Computer-Aided Design (FMCAD '96)},
-   series = {Lecture Notes in Computer Science},
-   volume = {1166},
-   pages = {187--201},
-   publisher = {Springer-Verlag},
-   month = nov,
-   year = {1996},
-   note = {Palo Alto, California},
-   url = {http://theory.stanford.edu/~barrett/pubs/BDL96.pdf}
-}
-
-% Adds a BV decision procedure to SVC (above)
-@inproceedings{barrett1998,
-author = {Barrett, Clark W. and Dill, David L. and Levitt, Jeremy R.},
-title = {A decision procedure for bit-vector arithmetic},
-year = {1998},
-isbn = {0897919645},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/277044.277186},
-doi = {10.1145/277044.277186},
-booktitle = {Proceedings of the 35th Annual Design Automation Conference},
-pages = {522–527},
-numpages = {6},
-keywords = {voltage scaling, synthesis, placement, low power, level converters, flip-flops, design automatian, codec, MPEG4},
-location = {San Francisco, California, USA},
-series = {DAC '98}
-}
-
-% Describe Shostak's DP for combining theories in better detail.
 @article{cyrluk1996,
-author = {Cyrluk, David and Lincoln, Patrick and Shankar, Natarajan},
-year = {1996},
-month = {06},
-pages = {},
-title = {On Shostak's Decision Procedure for Combinations of Theories},
-isbn = {978-3-540-61511-8},
-journal = {Lecture Notes in Computer Science},
-doi = {10.1007/3-540-61511-3_107}
+  author = {Cyrluk, David and Lincoln, Patrick and Shankar, Natarajan},
+  year = {1996},
+  month = {06},
+  pages = {},
+  title = {On Shostak's Decision Procedure for Combinations of Theories},
+  isbn = {978-3-540-61511-8},
+  journal = {Lecture Notes in Computer Science},
+  doi = {10.1007/3-540-61511-3_107},
 }
 
-@article{CzajkaK18,
-  author       = {Lukasz Czajka and
-                  Cezary Kaliszyk},
+@article{Czajka18,
+  author       = {Lukasz Czajka and Cezary Kaliszyk},
   title        = {Hammer for Coq: Automation for Dependent Type Theory},
   journal      = {J. Autom. Reason.},
   volume       = {61},
@@ -376,7 +264,693 @@ doi = {10.1007/3-540-61511-3_107}
   doi          = {10.1007/S10817-018-9458-4},
   timestamp    = {Wed, 02 Sep 2020 13:29:45 +0200},
   biburl       = {https://dblp.org/rec/journals/jar/CzajkaK18.bib},
-  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 
+@inproceedings{Czajka20,
+  author       = {Lukasz Czajka},
+  editor       = {Nicolas Peltier and Viorica Sofronie{-}Stokkermans},
+  title        = {Practical Proof Search for Coq by Type Inhabitation},
+  booktitle    = {Automated Reasoning - 10th International Joint Conference, {IJCAR}
+    2020, Paris, France, July 1-4, 2020, Proceedings, Part {II}},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {12167},
+  pages        = {28--57},
+  publisher    = {Springer},
+  year         = {2020},
+  url          = {https://doi.org/10.1007/978-3-030-51054-1\_3},
+  doi          = {10.1007/978-3-030-51054-1\_3},
+  timestamp    = {Thu, 16 Sep 2021 18:08:23 +0200},
+  biburl       = {https://dblp.org/rec/conf/cade/000120a.bib},
+}
 
+@misc{micromegafile25,
+  title = {certificate.ml},
+  howpublished = {\url{https://github.com/coq/coq/plugins/micromega/certificate.ml}},
+  year = {2008},
+  note = {Accessed: 2025-03-20}
+}
+
+@misc{rocq-history,
+  title = {Early history of Coq},
+  howpublished = {\url{https://rocq-prover.org/doc/V9.0.0/refman/history.html}},
+  year = {1995},
+  note = {Accessed: 2025-04-18}
+}
+
+@misc{rocq-auto-logic,
+  title = {Solvers for logic and equality},
+  year = {2024},
+  url = {https://rocq-prover.org/doc/master/refman/proofs/automatic-tactics/logic.html},
+  note = {Accessed: 2025-03-22}
+}
+
+@misc{rocq-auto-micromega,
+  title = {Micromega: solvers for arithmetic goals over ordered rings},
+  year = {2024},
+  url = {https://rocq-prover.org/doc/master/refman/addendum/micromega.html},
+  note = {Accessed: 2025-03-22}
+}
+
+@misc{rocq-auto-ring,
+  title = {ring and field: solvers for polynomial and rational equations},
+  year = {2024},
+  url = {https://rocq-prover.org/doc/master/refman/addendum/ring.html},
+  note = {Accessed: 2025-03-22}
+}
+
+@misc{rocq-auto-auto,
+  title = {Programmable proof search},
+  year = {2024},
+  url = {https://rocq-prover.org/doc/master/refman/proofs/automatic-tactics/auto.html},
+  note = {Accessed: 2025-03-22}
+}
+
+@misc{song24,
+  title={Equational Bit-Vector Solving via Strong Gr\"obner Bases}, 
+    author={Jiaxin Song and Hongfei Fu and Charles Zhang},
+  year={2024},
+  eprint={2402.16314},
+  archivePrefix={arXiv},
+  primaryClass={cs.LO},
+  url={https://arxiv.org/abs/2402.16314}, 
+}
+
+@article{dyckhoff18,
+  author = {DYCKHOFF, ROY},
+  copyright = {2018, Association for Symbolic Logic},
+  issn = {0022-4812},
+  journal = {The Journal of symbolic logic},
+  keywords = {Logic ; Mathematics ; Philosophy},
+  number = {4},
+  pages = {1680-1682},
+  publisher = {Association for Symbolic Logic, Inc},
+  title = {CONTRACTION-FREE SEQUENT CALCULI FOR INTUITIONISTIC LOGIC: A CORRECTION},
+  volume = {83},
+  year = {2018},
+}
+
+@article{dyckhoff92,
+  author = {Dyckhoff, Roy},
+  copyright = {Copyright 1992 Association for Symbolic Logic, Inc.},
+  issn = {0022-4812},
+  journal = {The Journal of symbolic logic},
+  keywords = {Intuitionistic logic ; Decision making ; Exact sciences and technology ; Linear logic ; Logic ; Logic and foundations ; Logical theorems ; Mathematical logic foundations set theory ; Mathematics ; Multisets ; Natural deduction calculus ; Proof theory and constructive mathematics ; Propositional logic ; Sciences and techniques of general use ; Sequent calculus ; Sequents},
+  number = {3},
+  pages = {795-807},
+  publisher = {Cambridge University Press},
+  title = {Contraction-free sequent calculi for intuitionistic logic},
+  volume = {57},
+  year = {1992},
+}
+
+@inproceedings{armand11,
+  author       = {Micha{\"{e}}l Armand and Germain Faure and Benjamin Gr{\'{e}}goire and Chantal Keller and Laurent Th{\'{e}}ry and Benjamin Werner},
+  editor       = {Jean{-}Pierre Jouannaud and Zhong Shao},
+  title        = {A Modular Integration of {SAT/SMT} Solvers to Coq through Proof Witnesses},
+  booktitle    = {Certified Programs and Proofs - First International Conference, {CPP}
+    2011, Kenting, Taiwan, December 7-9, 2011. Proceedings},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {7086},
+  pages        = {135--150},
+  publisher    = {Springer},
+  year         = {2011},
+  url          = {https://doi.org/10.1007/978-3-642-25379-9\_12},
+  doi          = {10.1007/978-3-642-25379-9\_12},
+  timestamp    = {Mon, 10 Mar 2025 09:29:43 +0100},
+  biburl       = {https://dblp.org/rec/conf/cpp/ArmandFGKTW11.bib},
+}
+
+@inproceedings{ekici17,
+  author       = {Burak Ekici and Alain Mebsout and Cesare Tinelli and Chantal Keller and Guy Katz and Andrew Reynolds and Clark W. Barrett},
+  editor       = {Rupak Majumdar and Viktor Kuncak},
+  title        = {SMTCoq: {A} Plug-In for Integrating {SMT} Solvers into Coq},
+  booktitle    = {Computer Aided Verification - 29th International Conference, {CAV}
+    2017, Heidelberg, Germany, July 24-28, 2017, Proceedings, Part {II}},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {10427},
+  pages        = {126--133},
+  publisher    = {Springer},
+  year         = {2017},
+  url          = {https://doi.org/10.1007/978-3-319-63390-9\_7},
+  doi          = {10.1007/978-3-319-63390-9\_7},
+  timestamp    = {Tue, 27 Jul 2021 08:54:13 +0200},
+  biburl       = {https://dblp.org/rec/conf/cav/EkiciMTKKRB17.bib},
+}
+
+@inproceedings{blot23,
+  author       = {Valentin Blot and Denis Cousineau and Enzo Crance and Louise Dubois de Prisque and Chantal Keller and Assia Mahboubi and Pierre Vial},
+  editor       = {Robbert Krebbers and Dmitriy Traytel and Brigitte Pientka and Steve Zdancewic},
+  title        = {Compositional Pre-processing for Automated Reasoning in Dependent
+    Type Theory},
+  booktitle    = {Proceedings of the 12th {ACM} {SIGPLAN} International Conference on
+    Certified Programs and Proofs, {CPP} 2023, Boston, MA, USA, January
+      16-17, 2023},
+  pages        = {63--77},
+  publisher    = {{ACM}},
+  year         = {2023},
+  url          = {https://doi.org/10.1145/3573105.3575676},
+  doi          = {10.1145/3573105.3575676},
+  timestamp    = {Tue, 07 Mar 2023 15:01:48 +0100},
+  biburl       = {https://dblp.org/rec/conf/cpp/Blot0CPKMV23.bib},
+}
+
+@inproceedings{blot21,
+  author       = {Valentin Blot and Louise Dubois de Prisque and Chantal Keller and Pierre Vial},
+  editor       = {Chantal Keller and Mathias Fleury},
+  title        = {General Automation in Coq through Modular Transformations},
+  booktitle    = {Proceedings Seventh Workshop on Proof eXchange for Theorem Proving,
+    PxTP 2021, Pittsburg, PA, USA, July 11, 2021},
+  series       = {{EPTCS}},
+  volume       = {336},
+  pages        = {24--39},
+  year         = {2021},
+  url          = {https://doi.org/10.4204/EPTCS.336.3},
+  doi          = {10.4204/EPTCS.336.3},
+  timestamp    = {Thu, 25 Nov 2021 17:17:09 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-2107-02353.bib},
+}
+
+@inproceedings{pedrot19,
+  author       = {Pierre-Marie P{\'e}drot},
+  editor       = {Robbert Krebbers},
+  title        = {Ltac2: Tactical Warfare},
+    POPL 2019, Lisbon, Portugal, January 13, 2019},
+  series       = {{CoqPL}},
+  year         = {2019},
+  url          = {https://popl19.sigplan.org/details/CoqPL-2019/8/Ltac2-Tactical-Warfare},
+}
+
+@misc{sniper-github-page,
+  title = {Sniper},
+  year = {2021},
+  url = {https://smtcoq.github.io/sniper/#/},
+  note = {Accessed: 2025-03-23},
+}
+
+@misc{check_range,
+  title = {check\_range},
+  year = {2025},
+  url = {https://gitlab.com/formalv/formalv},
+  note = {Accessed: 2025-03-25},
+}
+
+@inproceedings{barrett1996,
+  author = {Clark W. Barrett and David L. Dill and Jeremy R. Levitt},
+  editor = {Mandayam Srivas and Albert Camilleri},
+  title = {Validity Checking for Combinations of Theories with Equality},
+  booktitle = {Proceedings of the 1st International Conference on Formal Methods In Computer-Aided Design (FMCAD '96)},
+  series = {Lecture Notes in Computer Science},
+  volume = {1166},
+  pages = {187--201},
+  publisher = {Springer-Verlag},
+  month = {November},
+  year = {1996},
+  note = {Palo Alto, California},
+  url = {http://theory.stanford.edu/~barrett/pubs/BDL96.pdf},
+}
+
+  @inproceedings{barrett1998,
+    author = {Barrett, Clark W. and Dill, David L. and Levitt, Jeremy R.},
+    title = {A decision procedure for bit-vector arithmetic},
+    year = {1998},
+    isbn = {0897919645},
+    publisher = {Association for Computing Machinery},
+    url = {https://doi.org/10.1145/277044.277186},
+    doi = {10.1145/277044.277186},
+    booktitle = {Proceedings of the 35th Annual Design Automation Conference},
+    pages = {522–527},
+    numpages = {6},
+    keywords = {voltage scaling, synthesis, placement, low power, level converters, flip-flops, design automatian, codec, MPEG4},
+    location = {San Francisco, California, USA},
+    series = {DAC '98},
+  }
+@InProceedings{delahye00,
+  author="Delahaye, David",
+  editor="Parigot, Michel and Voronkov, Andrei",
+  booktitle="Logic for Programming and Automated Reasoning",
+  year="2000",
+  publisher="Springer Berlin Heidelberg",
+  pages="85--95",
+  isbn="978-3-540-44404-6"
+}
+
+@InProceedings{besson11,
+  author="Besson, Fr{\'e}d{\'e}ric and Cornilleau, Pierre-Emmanuel and Pichardie, David",
+  editor="Jouannaud, Jean-Pierre and Shao, Zhong",
+  title="Modular SMT Proofs for Fast Reflexive Checking Inside Coq",
+  booktitle="Certified Programs and Proofs",
+  year="2011",
+  publisher="Springer Berlin Heidelberg",
+  pages="151--166",
+  isbn="978-3-642-25379-9"
+}
+
+@Inbook{blaauwbroek24,
+  author="Blaauwbroek, Lasse and Cerna, David M. and Gauthier, Thibault and Jakub{\r{u}}v, Jan and Kaliszyk, Cezary and Suda, Martin and Urban, Josef",
+  editor="Capretta, Venanzio and Krebbers, Robbert and Wiedijk, Freek",
+  title="Learning Guided Automated Reasoning: A Brief Survey",
+  bookTitle="Logics and Type Systems in Theory and Practice: Essays Dedicated to Herman Geuvers on The Occasion of His 60th Birthday",
+  year="2024",
+  publisher="Springer Nature Switzerland",
+  pages="54--83",
+  isbn="978-3-031-61716-4",
+  doi="10.1007/978-3-031-61716-4_4",
+  url="https://doi.org/10.1007/978-3-031-61716-4_4"
+}
+
+@article{ringer20,
+  author       = {Talia Ringer and Karl Palmskog and Ilya Sergey and Milos Gligoric and Zachary Tatlock},
+  title        = {{QED} at Large: {A} Survey of Engineering of Formally Verified Software},
+  journal      = {CoRR},
+  volume       = {abs/2003.06458},
+  year         = {2020},
+  url          = {https://arxiv.org/abs/2003.06458},
+  eprinttype    = {arXiv},
+  eprint       = {2003.06458},
+  timestamp    = {Wed, 07 Jun 2023 07:54:21 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-2003-06458.bib},
+}
+
+@misc{li24,
+  title={A Survey on Deep Learning for Theorem Proving}, 
+  author={Zhaoyu Li and Jialiang Sun and Logan Murphy and Qidong Su and Zenan Li and Xian Zhang and Kaiyu Yang and Xujie Si},
+  year={2024},
+  eprint={2404.09939},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2404.09939}, 
+}
+
+@article{blanchette16,
+  author       = {Jasmin Christian Blanchette and Cezary Kaliszyk and Lawrence C. Paulson and Josef Urban},
+  title        = {Hammering towards {QED}},
+  journal      = {J. Formaliz. Reason.},
+  volume       = {9},
+  number       = {1},
+  pages        = {101--148},
+  year         = {2016},
+  url          = {https://doi.org/10.6092/issn.1972-5787/4593},
+  doi          = {10.6092/ISSN.1972-5787/4593},
+  timestamp    = {Thu, 24 Sep 2020 13:05:55 +0200},
+  biburl       = {https://dblp.org/rec/journals/jfrea/BlanchetteKPU16.bib},
+}
+
+@inproceedings{kozyrev24,
+  author = {Kozyrev, Andrei and Solovev, Gleb and Khramov, Nikita and Podkopaev, Anton},
+  title = {CoqPilot, a plugin for LLM-based generation of proofs},
+  year = {2024},
+  isbn = {9798400712487},
+  publisher = {Association for Computing Machinery},
+  url = {https://doi.org/10.1145/3691620.3695357},
+  doi = {10.1145/3691620.3695357},
+  booktitle = {Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering},
+  pages = {2382–2385},
+  numpages = {4},
+  keywords = {LLM, coq, code generation},
+  location = {Sacramento, CA, USA},
+  series = {ASE '24}
+}
+
+@article{malecha13,
+  author       = {Gregory Malecha and Adam Chlipala and Thomas Braibant and Patrick Hulin and Edward Z. Yang},
+  title        = {MirrorShard: Proof by Computational Reflection with Verified Hints},
+  journal      = {CoRR},
+  volume       = {abs/1305.6543},
+  year         = {2013},
+  url          = {http://arxiv.org/abs/1305.6543},
+  eprinttype    = {arXiv},
+  eprint       = {1305.6543},
+  timestamp    = {Mon, 13 Aug 2018 16:47:17 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1305-6543.bib},
+}
+
+@inproceedings{corbineau03,
+  author       = {Pierre Corbineau},
+  editor       = {Stefano Berardi and Mario Coppo and Ferruccio Damiani},
+  title        = {First-Order Reasoning in the Calculus of Inductive Constructions},
+  booktitle    = {Types for Proofs and Programs, International Workshop, {TYPES} 2003,
+    Torino, Italy, April 30 - May 4, 2003, Revised Selected Papers},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {3085},
+  pages        = {162--177},
+  publisher    = {Springer},
+  year         = {2003},
+  url          = {https://doi.org/10.1007/978-3-540-24849-1\_11},
+  doi          = {10.1007/978-3-540-24849-1\_11},
+  timestamp    = {Tue, 14 May 2019 10:00:42 +0200},
+  biburl       = {https://dblp.org/rec/conf/types/Corbineau03.bib},
+}
+
+@misc{coqhammer,
+  title = {CoqHammer - Proof Automation for Dependent Type Theory},
+  howpublished = {\url{https://coqhammer.github.io}},
+  year = {2021},
+  note = {Accessed: 2025-04-20}
+}
+
+@misc{coq_package_search,
+  title = {Coq Package Search Query="automation"},
+  howpublished = {\url{https://rocq-prover.org/packages/search?q=automation}},
+  year = {2025},
+  note = {Accessed: 2025-04-26}
+}
+
+@inproceedings{dealmeidaborges24,
+  series={CPP ’24},
+  title={UTC Time, Formally Verified},
+  url={http://dx.doi.org/10.1145/3636501.3636958},
+  DOI={10.1145/3636501.3636958},
+  booktitle={Proceedings of the 13th ACM SIGPLAN International Conference on Certified Programs and Proofs},
+  publisher={ACM},
+  author={de Almeida Borges, Ana and González Bedmar, Mireia and Conejero Rodríguez, Juan and Hermo Reyes, Eduardo and Casals Buñuel, Joaquim and Joosten, Joost},
+  year={2024},
+  month=jan, pages={2–13},
+  collection={CPP ’24} }
+  @inproceedings{thompson25,
+    author = {Kyle Thompson and Nuno Saavedra and Pedro Carrott and Kevin Fisher and Alex Sanchez-Stern and Yuriy Brun and Jo{\~{a}}o F. Ferreira and Sorin Lerner and Emily First},
+    title =
+    {\href{http://people.cs.umass.edu/brun/pubs/pubs/Thompson25icse.pdf}{Rango: 
+      {Adaptive} Retrieval-Augmented Proving for Automated Software Verification}},
+    booktitle = {Proceedings of the 47th International Conference on Software Engineering (ICSE)},
+    venue = {ICSE},
+    month = {April},
+    date = {28--30},
+    year = {2025},
+    accept = {$\frac{66}{662} \approx 10\%$ (2nd cycle direct accept, without revision)},
+    fundedBy = {NSF CCF-1955457, NSF CCF-2210243, NSF CCF-2220892, 
+      Air Force Research Laboratory (AFRL) and Defense Advanced Research Projects Agencies (DARPA) under Contract No. FA8750-24-C-B044, 
+      DARPA under Contract No. HR0011-24-2-0307, 
+      FCT, Funda{\c{c}}{\~{a}}o para a Ci{\^{e}}ncia e a Tecnologia under grant
+        BD/04736/2023 and project UIDB/50021/2020 (DOI: 10.54499/UIDB/50021/2020)},
+  }
+@article{sanchezstern23,
+  author = {Sanchez-Stern, Alex and First, Emily and Zhou, Timothy and Kaufman, Zhanna and Brun, Yuriy and Ringer, Talia},
+  title = {Passport: Improving Automated Formal Verification Using Identifiers},
+  year = {2023},
+  issue_date = {June 2023},
+  publisher = {Association for Computing Machinery},
+  volume = {45},
+  number = {2},
+  issn = {0164-0925},
+  url = {https://doi.org/10.1145/3593374},
+  doi = {10.1145/3593374},
+  journal = {ACM Trans. Program. Lang. Syst.},
+  month = jun,
+  articleno = {12},
+  numpages = {30},
+  keywords = {machine learning, proof synthesis, proof engineering, Proof assistants}
+}
+
+@inproceedings{besson06,
+  author       = {Fr{\'{e}}d{\'{e}}ric Besson},
+  editor       = {Thorsten Altenkirch and Conor McBride},
+  title        = {Fast Reflexive Arithmetic Tactics the Linear Case and Beyond},
+  booktitle    = {Types for Proofs and Programs, International Workshop, {TYPES} 2006,
+    Nottingham, UK, April 18-21, 2006, Revised Selected Papers},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {4502},
+  pages        = {48--62},
+  publisher    = {Springer},
+  year         = {2006},
+  url          = {https://doi.org/10.1007/978-3-540-74464-1\_4},
+  doi          = {10.1007/978-3-540-74464-1\_4},
+  timestamp    = {Tue, 14 May 2019 10:00:42 +0200},
+  biburl       = {https://dblp.org/rec/conf/types/Besson06.bib},
+}
+
+@inproceedings{armand10,
+  author       = {Micha{\"{e}}l Armand and Benjamin Gr{\'{e}}goire and Arnaud Spiwack and Laurent Th{\'{e}}ry},
+  editor       = {Matt Kaufmann and Lawrence C. Paulson},
+  title        = {Extending Coq with Imperative Features and Its Application to {SAT}
+    Verification},
+  booktitle    = {Interactive Theorem Proving, First International Conference, {ITP}
+    2010, Edinburgh, UK, July 11-14, 2010. Proceedings},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {6172},
+  pages        = {83--98},
+  publisher    = {Springer},
+  year         = {2010},
+  url          = {https://doi.org/10.1007/978-3-642-14052-5\_8},
+  doi          = {10.1007/978-3-642-14052-5\_8},
+  timestamp    = {Tue, 14 May 2019 10:00:37 +0200},
+  biburl       = {https://dblp.org/rec/conf/itp/ArmandGST10.bib},
+}
+
+@article{shostak84,
+  author       = {Robert E. Shostak},
+  title        = {Deciding Combinations of Theories},
+  journal      = {J. {ACM}},
+  volume       = {31},
+  number       = {1},
+  pages        = {1--12},
+  year         = {1984},
+  url          = {https://doi.org/10.1145/2422.322411},
+  doi          = {10.1145/2422.322411},
+  timestamp    = {Tue, 06 Nov 2018 12:51:45 +0100},
+  biburl       = {https://dblp.org/rec/journals/jacm/Shostak84.bib},
+}
+
+@inproceedings{claessen15,
+  author       = {Koen Claessen and Dan Ros{\'{e}}n},
+  editor       = {Martin Davis and Ansgar Fehnker and Annabelle McIver and Andrei Voronkov},
+  title        = {{SAT} Modulo Intuitionistic Implications},
+  booktitle    = {Logic for Programming, Artificial Intelligence, and Reasoning - 20th
+    International Conference, {LPAR-20} 2015, Suva, Fiji, November 24-28,
+    2015, Proceedings},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {9450},
+  pages        = {622--637},
+  publisher    = {Springer},
+  year         = {2015},
+  url          = {https://doi.org/10.1007/978-3-662-48899-7\_43},
+  doi          = {10.1007/978-3-662-48899-7\_43},
+  timestamp    = {Mon, 03 Jan 2022 22:31:30 +0100},
+  biburl       = {https://dblp.org/rec/conf/lpar/ClaessenR15.bib},
+}
+
+@phdthesis{keller13,
+  author       = {Chantal Keller},
+  title        = {A Matter of Trust: Skeptical Communication Between Coq and External
+    Provers. (Question de confiance : communication sceptique entre Coq
+        et des prouveurs externes)},
+  school       = {{\'{E}}cole Polytechnique, Palaiseau, France},
+  year         = {2013},
+  url          = {https://tel.archives-ouvertes.fr/pastel-00838322},
+  timestamp    = {Tue, 21 Jul 2020 00:40:48 +0200},
+  biburl       = {https://dblp.org/rec/phd/hal/Keller13.bib},
+}
+
+@inproceedings{ekici16,
+  author       = {Burak Ekici and Guy Katz and Chantal Keller and Alain Mebsout and Andrew J. Reynolds and Cesare Tinelli},
+  editor       = {Jasmin Christian Blanchette and Cezary Kaliszyk},
+  title        = {Extending SMTCoq, a Certified Checker for {SMT} (Extended Abstract)},
+  booktitle    = {Proceedings First International Workshop on Hammers for Type Theories,
+    HaTT@IJCAR 2016, Coimbra, Portugal, July 1, 2016},
+  series       = {{EPTCS}},
+  volume       = {210},
+  pages        = {21--29},
+  year         = {2016},
+  url          = {https://doi.org/10.4204/EPTCS.210.5},
+  doi          = {10.4204/EPTCS.210.5},
+  timestamp    = {Wed, 16 Mar 2022 23:52:32 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/EkiciKKMRT16.bib},
+}
+
+@inproceedings{barbosa23,
+  author       = {Haniel Barbosa and Chantal Keller and Andrew Reynolds and Arjun Viswanathan and Cesare Tinelli and Clark W. Barrett},
+  editor       = {Ruzica Piskac and Andrei Voronkov},
+  title        = {An Interactive {SMT} Tactic in Coq using Abductive Reasoning},
+  booktitle    = {{LPAR} 2023: Proceedings of 24th International Conference on Logic
+    for Programming, Artificial Intelligence and Reasoning, Manizales,
+      Colombia, 4-9th June 2023},
+  series       = {EPiC Series in Computing},
+  volume       = {94},
+  pages        = {11--22},
+  publisher    = {EasyChair},
+  year         = {2023},
+  url          = {https://doi.org/10.29007/432m},
+  doi          = {10.29007/432M},
+  timestamp    = {Tue, 16 Jul 2024 07:49:38 +0200},
+  biburl       = {https://dblp.org/rec/conf/lpar/BarbosaK0VTB23.bib},
+}
+
+@inproceedings{ekici23,
+  author       = {Burak Ekici and Arjun Viswanathan and Yoni Zohar and Cesare Tinelli and Clark W. Barrett},
+  editor       = {Uli Sattler and Martin Suda},
+  title        = {Formal Verification of Bit-Vector Invertibility Conditions in Coq},
+  booktitle    = {Frontiers of Combining Systems - 14th International Symposium, FroCoS
+    2023, Prague, Czech Republic, September 20-22, 2023, Proceedings},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {14279},
+  pages        = {41--59},
+  publisher    = {Springer},
+  year         = {2023},
+  url          = {https://doi.org/10.1007/978-3-031-43369-6\_3},
+  doi          = {10.1007/978-3-031-43369-6\_3},
+  timestamp    = {Tue, 16 Jul 2024 07:49:36 +0200},
+  biburl       = {https://dblp.org/rec/conf/frocos/EkiciVZTB23.bib},
+}
+
+@InProceedings{besson21,
+  author =	{Besson, Fr\'{e}d\'{e}ric},
+  title =	{{Itauto: An Extensible Intuitionistic SAT Solver}},
+  booktitle =	{12th International Conference on Interactive Theorem Proving (ITP 2021)},
+  pages =	{9:1--9:18},
+  series =	{Leibniz International Proceedings in Informatics (LIPIcs)},
+  ISBN =	{978-3-95977-188-7},
+  ISSN =	{1868-8969},
+  year =	{2021},
+  volume =	{193},
+  editor =	{Cohen, Liron and Kaliszyk, Cezary},
+  publisher =	{Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  URL =		{https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2021.9},
+  URN =		{urn:nbn:de:0030-drops-139043},
+  doi =		{10.4230/LIPIcs.ITP.2021.9},
+  annote =	{Keywords: SAT solver, proof by reflection}
+}
+
+@phdthesis{pichora03,
+  author={Pichora,Mark C.},
+  school={University of Toronto},
+  year={2003},
+  title={Automated reasoning about hardware data types using bit -vectors of symbolic lengths},
+  journal={ProQuest Dissertations and Theses},
+  pages={962},
+  note={Copyright - Database copyright ProQuest LLC; ProQuest does not claim copyright in the individual underlying works; Last updated - 2023-03-03},
+  isbn={978-0-612-84686-9},
+  url={https://libproxy.utdallas.edu/login?url=https://www.proquest.com/dissertations-theses/automated-reasoning-about-hardware-data-types/docview/305242039/se-2},
+}
+
+@article{bryant09,
+  author       = {Randal E. Bryant and Daniel Kroening and Jo{\"{e}}l Ouaknine and Sanjit A. Seshia and Ofer Strichman and Bryan A. Brady},
+  title        = {An abstraction-based decision procedure for bit-vector arithmetic},
+  journal      = {Int. J. Softw. Tools Technol. Transf.},
+  volume       = {11},
+  number       = {2},
+  pages        = {95--104},
+  year         = {2009},
+  url          = {https://doi.org/10.1007/s10009-009-0101-x},
+  doi          = {10.1007/S10009-009-0101-X},
+  timestamp    = {Thu, 02 Apr 2020 08:37:26 +0200},
+  biburl       = {https://dblp.org/rec/journals/sttt/BryantKOSSB09.bib},
+}
+
+@phdthesis{ganesh07,
+  author       = {Vijay Ganesh},
+  title        = {Decision procedures for bit-vectors, arrays and integers},
+  school       = {Stanford University, {USA}},
+  year         = {2007},
+  url          = {https://searchworks.stanford.edu/view/7139572},
+  timestamp    = {Thu, 27 Jun 2024 20:49:03 +0200},
+  biburl       = {https://dblp.org/rec/phd/us/Ganesh07.bib},
+}
+
+@article{coquand88,
+  author       = {Thierry Coquand and G{\'{e}}rard P. Huet},
+  title        = {The Calculus of Constructions},
+  journal      = {Inf. Comput.},
+  volume       = {76},
+  number       = {2/3},
+  pages        = {95--120},
+  year         = {1988},
+  url          = {https://doi.org/10.1016/0890-5401(88)90005-3},
+  doi          = {10.1016/0890-5401(88)90005-3},
+  timestamp    = {Fri, 12 Feb 2021 22:15:30 +0100},
+  biburl       = {https://dblp.org/rec/journals/iandc/CoquandH88.bib},
+}
+
+@inbook{malecha16,
+  author="Malecha, Gregory and Bengtson, Jesper",
+  editor="Thiemann, Peter",
+  chapter="Extensible and Efficient Automation Through Reflective Tactics",
+  year="2016",
+  publisher="Springer Berlin Heidelberg",
+  pages="532--559",
+  isbn="978-3-662-49498-1",
+  doi="10.1007/978-3-662-49498-1_21",
+  url="http://dx.doi.org/10.1007/978-3-662-49498-1_21"
+}
+
+@article{ziliani15,
+  author       = {Beta Ziliani and Derek Dreyer and Neelakantan R. Krishnaswami and Aleksandar Nanevski and Viktor Vafeiadis},
+  title        = {Mtac: {A} monad for typed tactic programming in Coq},
+  journal      = {J. Funct. Program.},
+  volume       = {25},
+  year         = {2015},
+  url          = {https://doi.org/10.1017/S0956796815000118},
+  doi          = {10.1017/S0956796815000118},
+  timestamp    = {Thu, 15 Jun 2017 21:30:55 +0200},
+  biburl       = {https://dblp.org/rec/journals/jfp/ZilianiDKNV15.bib},
+}
+
+@article{kaiser18,
+  author       = {Jan{-}Oliver Kaiser and Beta Ziliani and Robbert Krebbers and Yann R{\'{e}}gis{-}Gianas and Derek Dreyer},
+  title        = {Mtac2: typed tactics for backward reasoning in Coq},
+  journal      = {Proc. {ACM} Program. Lang.},
+  volume       = {2},
+  number       = {{ICFP}},
+  pages        = {78:1--78:31},
+  year         = {2018},
+  url          = {https://doi.org/10.1145/3236773},
+  doi          = {10.1145/3236773},
+  timestamp    = {Wed, 17 Feb 2021 08:54:01 +0100},
+  biburl       = {https://dblp.org/rec/journals/pacmpl/KaiserZKRD18.bib},
+}
+
+@misc{yasp23,
+  title = {Clark Barrett - Automated Reasoning, SMT Solvers, Artificial Intelligence},
+  author = {Joseph Scott},
+  note = {Podcast},
+  year = {2023},
+  howpublished = {\url{https://www.youtube.com/watch?v=RVjQkUI0kcw&t=1410s}}
+}
+
+@article{nelson80,
+  author       = {Greg Nelson and Derek C. Oppen},
+  title        = {Fast Decision Procedures Based on Congruence Closure},
+  journal      = {J. {ACM}},
+  volume       = {27},
+  number       = {2},
+  pages        = {356--364},
+  year         = {1980},
+  url          = {https://doi.org/10.1145/322186.322198},
+  doi          = {10.1145/322186.322198},
+  timestamp    = {Tue, 06 Nov 2018 12:51:45 +0100},
+  biburl       = {https://dblp.org/rec/journals/jacm/NelsonO80.bib},
+}
+
+@inproceedings{trakt,
+  author       = {Cyril Cohen and Enzo Crance and Assia Mahboubi},
+  editor       = {Stephanie Weirich},
+  title        = {Trocq: Proof Transfer for Free, With or Without Univalence},
+  series       = {Lecture Notes in Computer Science},
+  volume       = {14576},
+  pages        = {239--268},
+  publisher    = {Springer},
+  year         = {2024},
+  url          = {https://doi.org/10.1007/978-3-031-57262-3\_10},
+  doi          = {10.1007/978-3-031-57262-3\_10},
+  timestamp    = {Sat, 08 Jun 2024 13:13:57 +0200},
+  biburl       = {https://dblp.org/rec/conf/esop/CohenCM24.bib},
+}
+
+@article{nawaz19,
+  author       = {M. Saqib Nawaz and Moin Malik and Yi Li and Meng Sun and Muhammad Ikram Ullah Lali},
+  title        = {A Survey on Theorem Provers in Formal Methods},
+  journal      = {CoRR},
+  volume       = {abs/1912.03028},
+  year         = {2019},
+  url          = {http://arxiv.org/abs/1912.03028},
+  eprinttype    = {arXiv},
+  eprint       = {1912.03028},
+  timestamp    = {Sat, 23 Jan 2021 01:12:39 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1912-03028.bib},
+}
+
+@article{monniaux16,
+  author = {Monniaux, David},
+  copyright = {http://arxiv.org/licenses/nonexclusive-distrib/1.0},
+  keywords = {Computer Science - Logic in Computer Science},
+  title = {A Survey of Satisfiability Modulo Theory},
+  year = {2016},
+}

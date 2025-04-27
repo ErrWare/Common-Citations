@@ -1,8 +1,12 @@
 #!/bin/zsh
 
+# Offers reading suggestions based on the works most referenced
+# by the items in a bibliography.
+#
 # Input:
 #   $1 - bibtex file
 #   $2 - minimum number of citations for a result.
+#
 # Output:
 #   TSV of query
 

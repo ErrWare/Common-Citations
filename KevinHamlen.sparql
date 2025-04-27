@@ -1,0 +1,31 @@
+
+PREFIX cito: <http://purl.org/spar/cito/>
+PREFIX dblp: <https://dblp.org/rdf/schema#>
+PREFIX schema: <https://schema.org/>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?CitedNode 
+(IF(BOUND(?CitedTitleDblp),?CitedTitleDblp,?CitedTitleCito) AS ?CitedTitle)
+?URL
+(COUNT(DISTINCT ?GivenNode) AS ?N)
+(REPLACE(GROUP_CONCAT(DISTINCT ?Title ; SEPARATOR=", "), ".,", ",") AS ?Citers)
+WHERE {
+  Values ?GivenNode {
+  # <dblp_id> list
+  <https://dblp.org/rec/conf/dbsec/IrtizaLZKH24> <https://dblp.org/rec/conf/dbsec/IslamZHKK24> <https://dblp.org/rec/journals/jcs/LiKZWHT23> <https://dblp.org/rec/conf/codaspy/IslamZKKH23> <https://dblp.org/rec/conf/dbsec/AbdeenASKH23> <https://dblp.org/rec/conf/fps/HalimHKSIOHK23> <https://dblp.org/rec/conf/fps/ZamaniIKH23> <https://dblp.org/rec/conf/iclr/ZamaniIWKH23> <https://dblp.org/rec/conf/raid/BaumanDHL23> <https://dblp.org/rec/conf/bigdatasec/HalimKHTH22> <https://dblp.org/rec/conf/bigdatasec/IrtizaKH22> <https://dblp.org/rec/conf/dbsec/LiKZWHT22> <https://dblp.org/rec/conf/emnlp/00020PKH22> <https://dblp.org/rec/conf/mipr/WangHKHT22> <https://dblp.org/rec/journals/corr/abs-2210-09917> <https://dblp.org/rec/journals/compsec/YilmazSMTH21> <https://dblp.org/rec/journals/istr/AraujoAA0HK21> <https://dblp.org/rec/journals/tdsc/Al-NaamiEIKTHAR21> <https://dblp.org/rec/conf/hicss/AraujoSJDHK21> <https://dblp.org/rec/conf/bigdatasec/WangWDSHK20> <https://dblp.org/rec/conf/ccs/HamlenL20> <https://dblp.org/rec/conf/hicss/AyoadeAAMGHK20> <https://dblp.org/rec/conf/lctrts/HeBLYLLPHHZ20> <https://dblp.org/rec/conf/feast/2020> <https://dblp.org/rec/books/sp/AWHW2019> <https://dblp.org/rec/conf/acsac/AraujoAAGHK19> <https://dblp.org/rec/conf/blockchain2/AyoadeBKH19> <https://dblp.org/rec/conf/ccs/GhaffariniaH19> <https://dblp.org/rec/conf/date/FerrellDH19> <https://dblp.org/rec/conf/feast/HamlenFL19> 
+  }.
+  ?GivenNode dblp:title ?Title.
+  ?GivenNode dblp:omid ?GottenNode .
+  ?citation cito:hasCitingEntity ?GottenNode .
+  ?citation cito:hasCitedEntity ?CitedNode .
+  ?CitedNode schema:url ?URL
+  Optional {
+  ?DblpCitation dblp:omid ?CitedNode .
+  ?DblpCitation dblp:title ?CitedTitleDblp. }
+  
+  SERVICE <https://opencitations.net/meta/sparql> {
+    OPTIONAL { ?CitedNode dct:title ?CitedTitleCito .}
+  }
+}
+GROUP BY ?CitedNode ?CitedTitleDblp ?CitedTitleCito ?URL
+ORDER BY DESC(?N)
+

@@ -7,9 +7,24 @@
 #   will first search dblp.org for "Hoare logic" then using up to 100
 #   results will query the sparql endpoint to see what citations they
 #   have in common.
+#
+# The second parameter specifies a popularity threshold for the results.
+# E.g.
+#
+#   $ ./common_query.sh "Hoare logic" 5
+#   will run the same query as above, but only list the works which have
+#   at least 5 of the dblp-results referencing them.
+
+# This ${PARAM:-DEFAULT} evaluates to the default if PARAM is unset or the empty string,
+# otherwise it evaluates to the value of PARAM.
+MIN_CITATIONS="${2:-0}"
+# Use this mirror when DBLP is getting DDoSed
+DBLP_SITE="https://dblp.uni-trier.de/search"
+#DBLP_SITE="https://dblp.org/search"
 
 QUERY="$1"
 QUERYFILE="${1// /}.sparql"
+
 template='''
 PREFIX cito: <http://purl.org/spar/cito/>
 PREFIX dblp: <https://dblp.org/rdf/schema#>
@@ -43,11 +58,17 @@ ORDER BY DESC(?N)
 '''
 
 declare -a dblp_ids
-for id in $(curl -G --data-urlencode "q=$QUERY" https://dblp.org/search | ./dblp_html_to_id.sh | head -n 100); do
+for id in $(curl -G --data-urlencode "q=$QUERY" "$DBLP_SITE" | ./dblp_html_to_id.sh | head -n 100); do
   dblp_ids+="<$id> "
 done
 
 echo Dumping query to $QUERYFILE
-echo "${template//PLACEHOLDER/${dblp_ids[*]}}" >"$QUERYFILE"
+# Log the query for debugging
+echo Dumping query to $QUERYFILE
+# Sed replaces the mirror's domain with the one used for the node ids in case the
+# mirror was queried rather than dblp.org.
+echo "${template//PLACEHOLDER/${dblp_ids[*]}}" |
+  sed "s/MIN_CITATIONS/${MIN_CITATIONS}/" |
+  sed 's/uni-trier.de/org/g' >"$QUERYFILE"
 
 curl -X POST https://sparql.dblp.org/sparql -H "Accept: text/tab-separated-values" --data-urlencode query@"$QUERYFILE"
