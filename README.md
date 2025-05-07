@@ -13,6 +13,7 @@ These are the resources I used to develop this tutorial:
   3. DBLP's Sparql interface ([link](https://sparql.dblp.org/))
   4. dblp RDF schema ([link](https://dblp.org/rdf/docu/#Reference))
   5. SPARQL Wikibook ([link](https://en.wikibooks.org/wiki/SPARQL))
+  6. W3C Sparql Language Reference ([link](https://w3c.github.io/sparql-query/spec/))
 
 ## Knowledge Graph Basics
 
@@ -75,14 +76,14 @@ SELECT ?citation ?citing_omid ?cited_omid ?citation_date ?citation_timespan WHER
   ?citation cito:hasCitingEntity ?citing_omid .
   ?citation cito:hasCitedEntity ?cited_omid .
   OPTIONAL { ?citation cito:hasCitationCreationDate ?citation_date . }
-  OPTIONAL { ?citation cito:hasCitationTimeSpan ?citation_timespan . } 
+  OPTIONAL { ?citation cito:hasCitationTimeSpan ?citation_timespan . }
 }
 ```
 
 When we execute the query we get a single result. Many of the result values are links
 we can click, like the citation: [ 06503267503-06703780559](https://w3id.org/oc/index/ci/06503267503-06703780559).
 
-Clicking it takes us to a webpage hosted by the host of this information, which happens to be 
+Clicking it takes us to a webpage hosted by the host of this information, which happens to be
 a different org - not DBLP!  Take a few seconds to appreciate how cool this is - we're navigating
 a world wide web of open information using this query interface...
 
@@ -102,7 +103,7 @@ These two lines...
     |
   hasCitedEntity
     |
-    V 
+    V
 [ cited_node ]
 ```
 
@@ -114,7 +115,7 @@ Rather than the simpler format one may expect:
 
 A pedagogical aside:
 This representation of citations is an example of the oft confusing but ubiquitous concept of "reification," which is the big brain synonym of "labeling."
-Instead of encoding the citation relationship between the citer and the citee as an edge, 
+Instead of encoding the citation relationship between the citer and the citee as an edge,
 we give the citation itself a node, thus labelling it.
 This labeling of the citation itself allows us to talk about it,
 discussing any number of things like when it was created and who created it,
@@ -138,7 +139,7 @@ We have to find a way to start with an article name, translate it through DBLP t
 ```
                      .========.                         .=================.
                      |        |                         |                 |
-    article name --- |  DBLP  | --> cito:article_id --- |  OpenCitations  | --> citations 
+    article name --- |  DBLP  | --> cito:article_id --- |  OpenCitations  | --> citations
                      |        |                         |                 |
                      |________|                         |_________________|
 ```
@@ -158,8 +159,8 @@ We develop 2 hypotheses:
 4. We see that there's a node related to this article name - specifically the `<https://dblp.org/rec/journals/jar/CzajkaK18>` entry of the triple:
 
     ```ntriples
-    <https://dblp.org/rec/journals/jar/CzajkaK18> 
-      <https://dblp.org/rdf/schema#title> 
+    <https://dblp.org/rec/journals/jar/CzajkaK18>
+      <https://dblp.org/rdf/schema#title>
       "Hammer for Coq: Automation for Dependent Type Theory." .
     ```
 
@@ -183,9 +184,9 @@ corresponding OpenCitations (cito) article nodes.
   :    |                  :        V
   :    + some property? -----> [ cito article node ]
   :                       :
-  : _ _ _ _ _ _ _ _ _ _ _ : _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+  : _ _ _ _ _ _ _ _ _ _ _ : _ _ _ _ _ _ _ _ _ _ _ _ _ _
 ```
-                                          
+
 
 To find the `some property` we're looking for let's develop a query with some placeholder relation to some placeholder node
 that has another placeholder node pointing to it with the hasCitingEntity property.
@@ -266,7 +267,7 @@ ORDER BY DESC(?N)
 
 The title is missing for one of the cited articles!
 
-Probably this SPARQL endpoint doesn't host all of the information in order 
+Probably this SPARQL endpoint doesn't host all of the information in order
 to save on resources. That means we need to FEDERATE our query, meaning we
 need to shoot off a part of our query to a different endpoint that does
 host the information we want.
@@ -274,11 +275,10 @@ By asking on the DBLP's Knowledge Graph github forum we find the
 information we want is the dct:title hosted by purl.org ([github question](https://github.com/dblp/kg/discussions/6)).
 The query below demonstrates federation and the difference in information
 between two databases - not only does dct have an article that's missing from
-DBLP, but they disagree on the title of an article they have in common. 
-[Query Link](https://sparql.dblp.org/SEzXgB).
+DBLP, but they disagree on the title of an article they have in common.
+[Query Link](https://sparql.dblp.org/nuVANR).
 
 ```
-
   [ citing_dblp_publ  ]  ---   dblp:omid  ---> [ citing_omid ]
           |                                           ^
       dblp:title                                      |
@@ -298,8 +298,6 @@ DBLP, but they disagree on the title of an article they have in common.
                                            |  [ cited_oc_title ]  |
                                            |                      |
                                            |______________________|
-
-
 ```
 ```sparql
 PREFIX cito: <http://purl.org/spar/cito/>
@@ -314,23 +312,186 @@ SELECT ?cited_omid	?cited_dblp_title	?cited_oc_title WHERE {
   ?citation cito:hasCitedEntity ?cited_omid .
   OPTIONAL { ?cited_dblp_publ dblp:omid ?cited_omid .
     ?cited_dblp_publ dblp:title ?cited_dblp_title .
- }
-# # # # # # # # # # # # # # # # # # # # #  #
-#                                          #
-#   This is where the federation happens!  #
-#                                          #
-# # # # # # # # # # # # # # # # # # # # #  #
+  }
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                           #
+#   This is where the federation happens!*  #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
   SERVICE <https://opencitations.net/meta/sparql> {
-    OPTIONAL { ?cited_omid dct:title ?cited_oc_title . }
+    {
+      SELECT ?cited_omid ?cited_oc_title
+      WHERE { ?cited_omid dct:title ?cited_oc_title_tl .
+      BIND ( STR(?cited_oc_title_tl) AS ?cited_oc_title )}
+    }
+  }
+# * The remote database stores some titles as typed_literal's which
+#   our host database doesn't understand, so we have to convert them
+#   to strings there before sending them back to the host.
+}
+```
+
+## Polishing the Query
+
+We can simplify our query by using [property paths](https://en.wikibooks.org/wiki/SPARQL/Printable_version#Property_paths).
+Property paths allow us to "skip over" nodes when defining a relationship
+between two nodes that relies on intermediate nodes that we don't care about
+otherwise.
+For instance, in our citer-citee relationship, we don't really care about the citation
+node that sits in the middle. Remember: we have 3 nodes and 2 properties like this:
+
+```
+  [ citing_omid ]
+         ^
+         |
+cito:hasCitingEntity
+         |
+   [ citation ]
+         |
+cito:hasCitedEntity
+         |
+         V
+   [ cited_omid ]
+```
+
+And in the query it looks like this:
+
+```sparql
+  ?citation cito:hasCitingEntity ?citing_omid .
+  ?citation cito:hasCitedEntity ?cited_omid .
+```
+
+Simplified, it becomes:
+
+```
+  ?citing_omid ^cito:hasCitingEntity/cito:hasCitedEntity ?cited_omid .
+```
+
+Arcane? A little. Perplexing? Maybe. Confounding? Read on.
+
+We'll use only 2 new bits of syntax for our property paths - the forward slash `/` and the carrot `^`.
+The forward slash means "and the next property is..."
+It tells us to keep going without giving the node we just pointed to a name.
+The carrot is called the "inverse link" and means "the property pointing to this node."
+Simply, instead of `A prop B.` the carrot allows us to write `B ^prop A.`
+The carrot was necessary to omit the citation node because it sits in between the two nodes we care about--
+starting from one of the nodes, we'd have to traverse some edge backwards.
+
+Let's zoom in on this example, reading the SPARQL syntax from left to right and developing a mental model of what's going on.
+
+  * Starting at the left, `?citing_omid` tells us we're starting with a node:
+
+    ```sparql
+       _____________
+      |             |
+      | citing_omid |
+      |_____________|
+    ```
+
+  * Then the carrot `^` tells us the next property actually points to the current node, `citing_omid`:
+
+    ```sparql
+       _____________
+      |             |
+      | citing_omid |<==
+      |_____________|
+    ```
+
+  * `cito:hasCitingEntity` tells us the name of the property.
+
+    ```sparql
+       _____________
+      |             |
+      | citing_omid |<== cito:hasCitingEntity
+      |_____________|
+    ```
+
+  * The slash `/` says "and the next property is..." so we won't give this node a name...
+
+    ```sparql
+       _____________
+      |             |                             __
+      | citing_omid |<== cito:hasCitingEntity == |__|
+      |_____________|
+    ```
+
+  * `cite:hasCitedEntity` tells us the name of the next property.
+
+    ```sparql
+       _____________
+      |             |                             __
+      | citing_omid |<== cito:hasCitingEntity == |__| == cito:hasCitedEntity ==>
+      |_____________|
+    ```
+
+  * Finally, `?cited_omid` names the present node.
+
+    ```sparql
+       _____________                                                             ____________
+      |             |                             __                            |            |
+      | citing_omid |<== cito:hasCitingEntity == |__| == cito:hasCitedEntity ==>| cited_omid |
+      |_____________|                                                           |____________|
+    ```
+
+Now we don't have to name the nodes we don't care about in our picture above.
+We'll replace their names with `?` in the diagram. ([Query Link](https://sparql.dblp.org/9k6dPO)).
+
+
+```
+  [ citing_dblp_publ  ]  ---   dblp:omid  ---> [      ?      ]
+          |                                           ^
+      dblp:title                                      |
+          |                                  cito:hasCitingEntity
+          V                                           |
+  [ citing_dblp_title ]                             [ ? ]
+                                                      |
+                                             cito:hasCitedEntity
+                                                      |
+                                                      V
+  [       ?           ]  <---  dblp:omid    --- [ cited_omid ]
+          |                                           |
+      dblp:title                            __________|___________
+          |                    Federated   |          |           |
+          V                    to: dct     |      dct:title       |
+  [ cited_dblp_title  ]                    |          |           |
+                                           |  [ cited_oc_title ]  |
+                                           |                      |
+                                           |______________________|
+```
+
+```sparql
+PREFIX cito: <http://purl.org/spar/cito/>
+PREFIX dblp: <https://dblp.org/rdf/schema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX schema: <https://schema.org/>
+SELECT ?cited_omid	?cited_dblp_title	?cited_oc_title WHERE {
+  VALUES ?citing_dblp_publ { <https://dblp.org/rec/conf/mkm/CzajkaEK18> } .
+  ?citing_dblp_publ dblp:title ?citing_dblp_title .
+  ?citing_dblp_publ dblp:omid/^cito:hasCitingEntity/cito:hasCitedEntity ?cited_omid.
+  OPTIONAL {
+    ?cited_omid ^dblp:omid/dblp:title ?cited_dblp_title.
+  }
+# # # # # # # # # # # # # # # # # # # # # # #
+#                                           #
+#   This is where the federation happens!   #
+#                                           #
+# # # # # # # # # # # # # # # # # # # # # # #
+  SERVICE <https://opencitations.net/meta/sparql> {
+    {
+      SELECT ?cited_omid ?cited_oc_title
+      WHERE { ?cited_omid dct:title ?cited_oc_title_tl .
+      BIND ( STR(?cited_oc_title_tl) AS ?cited_oc_title )}
+    }
   }
 }
 ```
 
+Beautiful, we've managed to eliminate 3 nodes ~~at the cost of using~~ and learn more advanced SPARQL features.
 
 ## Where to go from here?
 
 I hope this introduction to knowledge graphs and its demonstration was useful.
-From here you can look at the included shell scripts for ideas on how to 
+From here you can look at the included shell scripts for ideas on how to
 automate some useful queries.
 You can also check out the resources below for more knowledge graphs you can explore.
 
@@ -347,3 +508,13 @@ Public Sparql Endpoints:
   1.  [DBpedia](https://dbpedia.org/sparql)
   2.  [DBLP](https://sparql.dblp.org/) - this is what we used in the presentation
   3.  [Open Street Maps](https://qlever.cs.uni-freiburg.de/osm-planet/q46NYb)
+
+## Acknowledgements
+
+Sincere gratitude to Hannah Bast and Marcel Ackermann for helping me through my questions
+on the dblp/kg discussions linked below.
+
+1. https://github.com/dblp/kg/discussions/6
+2. https://github.com/dblp/kg/discussions/7
+3. https://github.com/dblp/kg/discussions/9
+4. https://github.com/dblp/kg/discussions/10

@@ -7,4 +7,4 @@
 
 BIBFILE="$1"
 
-grep -w title "$BIBFILE" | sed 's/^[^{"]*[{"]//; s/[:/"}].*$//'
+grep -w title "$BIBFILE" | sed 's/^[^{"]*[{"]//; s/[:/"].*$//' | tr -d '{}:,'
