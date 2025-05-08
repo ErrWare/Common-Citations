@@ -1,16 +1,19 @@
-#!/bin/zsh
+#/bin/sh
 
-# Offers reading suggestions based on the works most referenced
-# by the items in a bibliography.
+# Runs a sparql query based on a dblp page.
+# E.g.
 #
-# Input:
-#   $1 - bibtex file
-#   $2 - minimum number of citations for a result.
+#   $ ./dblp_page_query.sh 'https://dblp.org/pid/s/FredBSchneider.html'
+#   will first fetch the corresponding webpage then use the top 200
+#   results to query the sparql endpoint to see what citations they
+#   have in common.
 #
-# Output:
-#   TSV of query
-
-BIBFILE="$1"
+# The second parameter specifies a popularity threshold for the results.
+# E.g.
+#
+#   $ ./dblp_page_query.sh 'https://dblp.org/pid/s/FredBSchneider.html' 5
+#   will run the same query as above, but only list the works which have
+#   at least 5 of the dblp-results referencing them.
 
 # This ${PARAM:-DEFAULT} evaluates to the default if PARAM is unset or the empty string,
 # otherwise it evaluates to the value of PARAM.
@@ -20,36 +23,10 @@ MIN_CITATIONS="${2:-0}"
 #DBLP_SITE="https://dblp.uni-trier.de/search"
 DBLP_SITE="https://dblp.org/search"
 
-declare -a dblp_ids
+QUERY="$(echo $1 | sed 's/^.*\/\([^\/]*\).html/\1/')"
+QUERYFILE=".${QUERY// /}.sparql"
+RESULTSFILE="${QUERY// /}.results"
 
-echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
-echo '-                                                                   -'
-echo '-  => Building Query From Bibliography                              -'
-echo '-                                                                   -'
-echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
-# for title in "$(./titles_from_bib.sh "$1")"; do
-./titles_from_bib.sh "$1" | while read title; do
-# temporary workaround for presentation
-# cat smallbib | while read title; do
-  # Get at most 20 results from each title-based query.
-  # Maybe this should be even less. A title should be quite specific.
-  echo $title
-  ID_FILE=".cache/${title// /_}.ids"
-  [[ ! -f "$ID_FILE" ]] && \
-    id_lines="$(curl -G --data-urlencode "q=$title" "$DBLP_SITE" | ./dblp_html_to_id.sh | head -n 2)" && \
-    echo "$id_lines" > "$ID_FILE"
-  num_results="$(cat "$ID_FILE" | tr ' ' '\n' | wc -l)"
-  echo $num_results results for query "\"$title\""
-  x=0
-  for id in $(cat "$ID_FILE"); do
-    dblp_ids+="<$id> "
-    echo $x : $id
-    x=$((x + 1))
-  done
-done
-
-QUERYFILE=".${BIBFILE// /}.sparql"
-RESULTSFILE="${BIBFILE// /}.results"
 template='''
 PREFIX cito: <http://purl.org/spar/cito/>
 PREFIX dblp: <https://dblp.org/rdf/schema#>
@@ -58,11 +35,12 @@ PREFIX dct: <http://purl.org/dc/terms/>
 SELECT 
   (COUNT(DISTINCT ?GivenNode) AS ?N)
   (IF(BOUND(?CitedTitleDblp),?CitedTitleDblp,?CitedTitleCito) AS ?CitedTitle)
-  ?CitedNode
+  ?CitedNode 
   ?URL
   (REPLACE(GROUP_CONCAT(DISTINCT ?Title ; SEPARATOR=", "), ".,", ",") AS ?Citers)
 WHERE {
   Values ?GivenNode {
+  # <dblp_id> list
   PLACEHOLDER
   }.
   ?GivenNode dblp:title ?Title.
@@ -87,15 +65,17 @@ HAVING (?N >= MIN_CITATIONS)
 ORDER BY DESC(?N)
 '''
 
-unused='''
-'''
+declare -a dblp_ids
+for id in $(curl "$1" | ./dblp_html_to_id.sh | head -n 200); do
+  dblp_ids+="<$id> "
+done
 
 # Log the query for debugging
 echo Dumping query to $QUERYFILE
 # Sed replaces the mirror's domain with the one used for the node ids in case the
 # mirror was queried rather than dblp.org.
-echo "${template//PLACEHOLDER/${dblp_ids[*]}}" | \
-  sed "s/MIN_CITATIONS/${MIN_CITATIONS}/" | \
+echo "${template//PLACEHOLDER/${dblp_ids[*]}}" |
+  sed "s/MIN_CITATIONS/${MIN_CITATIONS}/" |
   sed 's/uni-trier.de/org/g' >"$QUERYFILE"
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 echo '-                                                                   -'
@@ -104,16 +84,18 @@ echo '-                                                                   -'
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 cat $QUERYFILE
 
-echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
-echo '-                                                                   -'
-echo '-  => Issuing Query                                                 -'
-echo '-                                                                   -'
-echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
-curl -X POST https://sparql.dblp.org/sparql -H "Accept: text/tab-separated-values" --data-urlencode query@"$QUERYFILE" > $RESULTSFILE
+curl -X POST https://sparql.dblp.org/sparql -H "Accept: text/tab-separated-values" --data-urlencode query@"$QUERYFILE" >$RESULTSFILE
 
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 echo '-                                                                   -'
 echo '-  => Showing Results                                               -'
 echo '-                                                                   -'
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
+
 cat $RESULTSFILE
+
+echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
+echo '-                                                                   -'
+echo '-  => Results file:' $RESULTSFILE
+echo '-                                                                   -'
+echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'

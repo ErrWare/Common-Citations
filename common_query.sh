@@ -24,8 +24,8 @@ MIN_CITATIONS="${2:-0}"
 DBLP_SITE="https://dblp.org/search"
 
 QUERY="$1"
-QUERYFILE="${1// /}.sparql"
-RESULTSFILE="${BIBFILE// /}.results"
+QUERYFILE=".${QUERY// /}.sparql"
+RESULTSFILE="${QUERY// /}.results"
 
 template='''
 PREFIX cito: <http://purl.org/spar/cito/>
@@ -66,7 +66,7 @@ ORDER BY DESC(?N)
 '''
 
 declare -a dblp_ids
-for id in $(curl -G --data-urlencode "q=$QUERY" "$DBLP_SITE" | ./dblp_html_to_id.sh | head -n 100); do
+for id in $(curl -G --data-urlencode "q=$QUERY" "$DBLP_SITE" | ./dblp_html_to_id.sh | head -n 160); do
   dblp_ids+="<$id> "
 done
 
@@ -91,4 +91,11 @@ echo '-                                                                   -'
 echo '-  => Showing Results                                               -'
 echo '-                                                                   -'
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
+
 cat $RESULTSFILE
+
+echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
+echo '-                                                                   -'
+echo '-  => Results file:' $RESULTSFILE
+echo '-                                                                   -'
+echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
