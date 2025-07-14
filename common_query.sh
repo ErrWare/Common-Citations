@@ -66,7 +66,7 @@ ORDER BY DESC(?N)
 '''
 
 declare -a dblp_ids
-for id in $(curl -G --data-urlencode "q=$QUERY" "$DBLP_SITE" | ./dblp_html_to_id.sh | head -n 160); do
+for id in $(curl -G --data-urlencode "q=$QUERY" "$DBLP_SITE" | ./dblp_html_to_id.sh | head -n 400); do
   dblp_ids+="<$id> "
 done
 
@@ -92,7 +92,8 @@ echo '-  => Showing Results                                               -'
 echo '-                                                                   -'
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 
-cat $RESULTSFILE
+head $RESULTSFILE
+echo ...
 
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 echo '-                                                                   -'

@@ -92,7 +92,8 @@ echo '-  => Showing Results                                               -'
 echo '-                                                                   -'
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 
-cat $RESULTSFILE
+head $RESULTSFILE
+echo ...
 
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 echo '-                                                                   -'

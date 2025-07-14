@@ -116,4 +116,11 @@ echo '-                                                                   -'
 echo '-  => Showing Results                                               -'
 echo '-                                                                   -'
 echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
-cat $RESULTSFILE
+head $RESULTSFILE
+echo ...
+
+echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
+echo '-                                                                   -'
+echo '-  => Results file:' $RESULTSFILE
+echo '-                                                                   -'
+echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
