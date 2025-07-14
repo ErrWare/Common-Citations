@@ -38,7 +38,7 @@ Example:
 
 Typically these graphs are stored in [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework) format, which can be represented in many ways.
 The most simple is [N-Triples](https://en.wikipedia.org/wiki/N-Triples), which stores them as plain text triples in the format "\<entity1\> \<property name\> (\<entity2\> | value) ."
-Where `entity1` is always a node, `property name` is the name of the edge (e.g. "course_number", or "in_course")"), and the third place is either another node, `entity2`, or a value (e.g. a string or number).
+Where `entity1` is always a node, `property name` is the name of the edge (e.g. "course_number", or "in_course"), and the third place is either another node, `entity2`, or a value (e.g. a string or number).
 
 Our example graph above would thus be represented as the RDF N-Triples file:
 
